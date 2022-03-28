@@ -1,132 +1,197 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>Laravel</title>
+<head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multikart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Multikart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="{{ asset('assets/') }}//images/dashboard/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/') }}//images/dashboard/favicon.png" type="image/x-icon">
+    <title>Chandlee Software</title>
 
-        <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
-        </style>
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}//css/vendors/fontawesome.css">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
-                        <g clip-path="url(#clip0)" fill="#EF3B2D">
-                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
-                        </g>
-                    </svg>
-                </div>
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/vendors/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
-                            </div>
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
-                                </div>
-                            </div>
-                        </div>
+    <!-- slick icon-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/vendors/slick-theme.css">
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
-                            </div>
+    <!-- jsgrid css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/vendors/jsgrid.css">
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                </div>
-                            </div>
-                        </div>
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/vendors/bootstrap.css">
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
-                            </div>
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/admin.css">
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </div>
-                            </div>
-                        </div>
+</head>
+<body>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+<!-- page-wrapper Start-->
+<div class="page-wrapper">
+    <div class="authentication-box">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5 p-0 card-left">
+                    <div class="card bg-primary">
+                        <div class="svg-icon">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 468.52 468.52" style="enable-background:new 0 0 468.52 468.52;" xml:space="preserve">
+                            <g>
+                                <path style="fill:#E6E6E6;" d="M468.52,102.595v251.88c0,11.14-7.571,20.52-17.86,23.25c-1.98,0.531-4.06,0.81-6.2,0.81H38.58
+                                    c-13.29,0-24.061-10.77-24.061-24.06v-251.88c0-13.29,10.771-24.06,24.061-24.06h405.88c2.14,0,4.22,0.28,6.2,0.81
+                                    C460.949,82.075,468.52,91.455,468.52,102.595"/>
+                                <path style="fill:#B3B3B3;" d="M468.518,102.591v23.94h-454v-23.94c0-13.29,10.771-24.06,24.06-24.06h405.88
+                                    C457.747,78.532,468.518,89.302,468.518,102.591"/>
+                                <rect x="42.099" y="141.002" style="fill:#999999;" width="118.901" height="16.532"/>
+                                <polyline style="fill:#FFFFFF;" points="442.383,222.765 256.652,222.765 256.652,354.496 442.383,354.496 442.383,222.765 	"/>
+                                <polyline style="fill:#13c9ca;" points="434.552,329.733 265.552,329.733 265.552,346.265 434.552,346.265 434.552,329.733 	"/>
+                                <polyline style="fill:#a5a5a5;" points="286.552,297.744 265.552,297.744 265.552,314.276 286.552,314.276 286.552,297.744 	"/>
+                                <polyline style="fill:#ffbc58;" points="350.552,265.754 265.552,265.754 265.552,282.286 350.552,282.286 350.552,265.754 	"/>
+                                <polyline style="fill:#999999;" points="411.552,233.765 265.552,233.765 265.552,250.297 411.552,250.297 411.552,233.765 	"/>
+                                <circle style="fill:#a5a5a5;" cx="47.517" cy="102.532" r="15"/>
+                                <circle style="fill:#ffbc58;" cx="87.517" cy="102.532" r="15"/>
+                                <path style="fill:#EEEEEE;" d="M463.696,88.139c3.027,4.024,4.822,9.029,4.822,14.453v23.94h-23.321
+                                    c0.04,35.899-19.42,70.584-53.444,88.347c-2.102,0.921-4.223,1.779-6.365,2.574l2.774,5.313h54.222v131.731H298.563l7.326,24.038
+                                    h138.57c2.14,0,4.22-0.28,6.2-0.81c10.29-2.73,17.86-12.11,17.86-23.25v-251.88C468.52,97.17,466.725,92.164,463.696,88.139
+                                    M463.657,88.088c0.012,0.016,0.023,0.031,0.036,0.047C463.681,88.12,463.669,88.103,463.657,88.088 M463.621,88.04
+                                    c0.008,0.01,0.015,0.02,0.023,0.03C463.636,88.06,463.629,88.05,463.621,88.04 M463.59,87.999c0.003,0.004,0.006,0.008,0.009,0.012
+                                    C463.596,88.007,463.593,88.003,463.59,87.999"/>
+                                <path style="fill:#CBCBCB;" d="M444.46,78.535h-11.739c0.396,0.716,0.784,1.437,1.165,2.167c7.655,14.662,11.293,30.36,11.31,45.83
+                                    h23.321v-23.94c0-5.424-1.795-10.429-4.822-14.453l0,0c-0.001-0.001-0.002-0.002-0.003-0.003l0,0
+                                    c-0.012-0.016-0.023-0.031-0.036-0.047l0,0c-0.005-0.006-0.009-0.012-0.014-0.018l0,0c-0.008-0.01-0.015-0.02-0.023-0.03l0,0
+                                    c-0.007-0.01-0.014-0.019-0.022-0.029l0,0c-0.003-0.004-0.006-0.008-0.009-0.012l0,0c-3.187-4.171-7.708-7.269-12.93-8.654
+                                    C448.68,78.815,446.6,78.535,444.46,78.535"/>
+                                <path style="fill:#FFFFFF;" d="M442.383,222.765h-54.222l5.326,10.202c-0.519,0.271-1.04,0.537-1.561,0.798h19.626v16.532H266.807
+                                    l4.711,15.457h79.034v16.532h-73.996l4.711,15.458h5.285v16.532h-0.246l4.711,15.457h143.536v16.532H296.055l2.509,8.231h143.819
+                                    V222.765"/>
+                                <polyline style="fill:#6EC6EB;" points="434.552,329.733 291.016,329.733 296.055,346.265 434.552,346.265 434.552,329.733 	"/>
+                                <polyline style="fill:#FDA589;" points="286.552,297.744 281.267,297.744 286.306,314.276 286.552,314.276 286.552,297.744 	"/>
+                                <polyline style="fill:#FBE98E;" points="350.552,265.754 271.518,265.754 276.556,282.286 350.552,282.286 350.552,265.754 	"/>
+                                <path style="fill:#EEEEEE;" d="M246.265,126.531h-17.178l29.329,96.234h62.908c-1.465-0.282-2.926-0.591-4.384-0.929l-1.001-0.232
+                                    c-24.282-7.625-45.651-24.51-58.362-48.855C249.857,157.962,246.221,142.128,246.265,126.531"/>
+                                <path style="fill:#CBCBCB;" d="M258.73,78.535h-44.27l14.628,47.996h17.178c0.028-10.08,1.594-20.062,4.587-29.594
+                                    C252.852,90.569,255.489,84.4,258.73,78.535"/>
+                                <path style="fill:#FFFFFF;" d="M321.324,222.765h-62.908l7.136,23.415v-12.415h53.983l3.362-10.708
+                                    C322.373,222.963,321.848,222.866,321.324,222.765"/>
+                                <path style="fill:#BABABA;" d="M411.552,233.765h-19.626c-14.25,7.129-29.421,10.514-44.383,10.514
+                                    c-10.173,0-20.251-1.566-29.869-4.586l1.861-5.928h-53.983v12.415l1.255,4.117h144.745V233.765"/>
+                                <path style="fill:#CECECE;" d="M385.387,217.453c-6.196,2.3-12.551,4.073-18.994,5.313h21.767L385.387,217.453"/>
+                                <path style="fill:#DBDBDB;" d="M388.161,222.765h-21.767c-7.428,1.428-14.973,2.147-22.536,2.147
+                                    c-6.999,0-14.015-0.616-20.959-1.855l-3.362,10.708h72.391c0.521-0.261,1.042-0.527,1.561-0.798L388.161,222.765"/>
+                                <path style="fill:#A4A4A4;" d="M391.926,233.765h-72.391l-1.861,5.928c9.618,3.02,19.696,4.586,29.869,4.586
+                                    C362.505,244.279,377.677,240.894,391.926,233.765"/>
+                                <path style="fill:#DBDBDB;" d="M345.64,27.261c-15.507,0-31.24,3.637-45.936,11.309c-17.955,9.374-31.855,23.466-40.973,39.961
+                                    h173.987c-12.828-23.18-33.641-39.288-57.199-46.682C365.898,28.829,355.817,27.261,345.64,27.261"/>
+                                <polyline style="fill:#9F9F9F;" points="432.719,78.532 258.732,78.532 258.73,78.535 432.721,78.535 432.719,78.532 	"/>
+                                <path style="fill:#CECECE;" d="M445.196,126.531H246.265c-0.044,15.597,3.592,31.43,11.312,46.218
+                                    c12.711,24.345,34.08,41.23,58.362,48.855l1.001,0.232c1.458,0.338,2.919,0.647,4.384,0.929h45.069
+                                    c6.443-1.239,12.797-3.012,18.994-5.313c2.142-0.795,4.263-1.653,6.365-2.574C425.776,197.115,445.237,162.431,445.196,126.531"/>
+                                <path style="fill:#B2B2B2;" d="M432.721,78.535H258.73c-3.241,5.865-5.878,12.033-7.878,18.402
+                                    c-2.993,9.532-4.559,19.515-4.587,29.594h198.931c-0.017-15.469-3.656-31.168-11.31-45.83
+                                    C433.505,79.972,433.117,79.251,432.721,78.535"/>
+                                <path style="fill:#DBDBDB;" d="M366.393,222.765h-45.069c0.524,0.101,1.049,0.198,1.574,0.292
+                                    c6.945,1.239,13.96,1.855,20.959,1.855C351.42,224.912,358.965,224.193,366.393,222.765"/>
+                                <path style="fill:#ffbc58;" d="M345.73,113.225l-5.24,16.69l-24.55,78.18c-24.28-7.62-45.65-24.51-58.36-48.85
+                                    c-12.71-24.35-14.35-51.53-6.73-75.81l83.46,26.2L345.73,113.225z"/>
+                                <path style="fill:#13c9ca;" d="M393.49,219.465c-7.48,3.9-15.23,6.76-23.08,8.63c-17.7,4.21-35.91,3.38-52.74-1.91l26.47-84.29
+                                    l3.32-10.59L393.49,219.465z"/>
+                                <path style="fill:#a5a5a5;" d="M391.75,201.375l-46.02-88.15l-11.42-3.59l-83.46-26.2c7.63-24.29,24.51-45.66,48.85-58.37
+                                    c2.55-1.33,5.12-2.54,7.73-3.62c22.27-9.33,46.35-9.93,68.09-3.1c24.29,7.62,45.66,24.5,58.37,48.85
+                                    C459.3,115.885,440.44,175.955,391.75,201.375z"/>
+                                <polyline style="fill:#FFFFFF;" points="226.383,168.765 40.652,168.765 40.652,354.496 226.383,354.496 226.383,168.765 	"/>
+                                <polyline style="fill:#2BE0C6;" points="93.6,254.001 57.602,254.001 57.602,343.996 93.6,343.996 93.6,254.001 	"/>
+                                <polyline style="fill:#ffbc58;" points="151.517,224.002 115.518,224.002 115.518,343.996 151.517,343.996 151.517,224.002 	"/>
+                                <polyline style="fill:#a5a5a5;" points="209.432,191.004 173.435,191.004 173.435,343.996 209.432,343.996 209.432,191.004 	"/>
+                                <polyline style="fill:#13c9ca;" points="242.83,325.765 242.83,454.765 0,454.765 0,325.765 242.83,325.765 	"/>
+                                <polyline style="fill:#F2F2F2;" points="15,439.765 15,340.765 227.826,340.765 227.826,439.765 15,439.765 	"/>
+                                <polyline style="fill:#a5a5a5;" points="108.064,430.978 87.408,408.6 78.664,420.466 71.9,415.483 86.68,395.426 106.349,416.734
+                                    137.239,360.959 160.785,398.8 188.393,349.552 195.722,353.66 161.162,415.307 137.661,377.538 108.064,430.978 	"/>
+                                <rect x="26" y="357.765" style="fill:#999999;" width="27" height="11"/>
+                                <rect x="26" y="384.765" style="fill:#999999;" width="27" height="11"/>
+                                <rect x="26" y="411.765" style="fill:#999999;" width="27" height="11"/>
+                                <polyline style="fill:#6EC6EB;" points="242.83,325.765 209.432,325.765 173.435,325.765 151.517,325.765 115.518,325.765
+                                    93.6,325.765 92.88,325.765 97.451,340.765 227.826,340.765 227.826,439.765 127.619,439.765 132.19,454.765 242.83,454.765
+                                    242.83,325.765 	"/>
+                                <polyline style="fill:#F6F6F6;" points="227.826,340.765 97.451,340.765 115.542,400.135 137.239,360.959 160.785,398.8
+                                    188.393,349.552 195.722,353.66 161.162,415.307 137.661,377.538 118.951,411.32 127.619,439.765 227.826,439.765 227.826,340.765
+                                        "/>
+                                <polyline style="fill:#FDA589;" points="188.393,349.552 160.785,398.8 137.239,360.959 115.542,400.135 118.951,411.32
+                                    137.661,377.538 161.162,415.307 195.722,353.66 188.393,349.552 	"/>
+                                <path style="fill:#CCCCCC;" d="M393.695,417.909l8.485-20.662l25.251,25.251c1.464,1.464,3.387,2.199,5.303,2.192
+                                    c1.923,0,3.84-0.728,5.303-2.192c2.934-2.934,2.927-7.679,0-10.607l-25.251-25.251l20.669-8.492l-78.559-38.792L393.695,417.909z"
+                                    />
+                                <path style="fill:#808080;" d="M393.695,417.909l8.485-20.662l25.251,25.251c1.464,1.464,3.387,2.199,5.303,2.192
+                                    c1.923,0,3.84-0.728,5.303-2.192l-83.142-83.142L393.695,417.909z"/>
+                            </g>
                             </svg>
-
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Shop
-                            </a>
-
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                                Sponsor
-                            </a>
                         </div>
-                    </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                        <div class="single-item">
+                            <div>
+                                <div>
+                                    <h3>Welcome to Chandlee</h3>
+                                    <p><a class="btn btn-primary" href="{{ route('login') }}">Login Your Account</a></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+
+<!-- latest jquery-->
+<script src="{{ asset('assets/') }}//js/jquery-3.3.1.min.js"></script>
+
+<!-- Bootstrap js-->
+<script src="{{ asset('assets/') }}//js/bootstrap.bundle.min.js"></script>
+
+<!-- feather icon js-->
+<script src="{{ asset('assets/') }}//js/icons/feather-icon/feather.min.js"></script>
+<script src="{{ asset('assets/') }}//js/icons/feather-icon/feather-icon.js"></script>
+
+<!-- Sidebar jquery-->
+<script src="{{ asset('assets/') }}//js/sidebar-menu.js"></script>
+<script src="{{ asset('assets/') }}//js/slick.js"></script>
+
+<!-- Jsgrid js-->
+<script src="{{ asset('assets/') }}//js/jsgrid/jsgrid.min.js"></script>
+<script src="{{ asset('assets/') }}//js/jsgrid/griddata-invoice.js"></script>
+<script src="{{ asset('assets/') }}//js/jsgrid/jsgrid-invoice.js"></script>
+
+<!-- lazyload js-->
+<script src="{{ asset('assets/') }}//js/lazysizes.min.js"></script>
+
+<!--right sidebar js-->
+<script src="{{ asset('assets/') }}//js/chat-menu.js"></script>
+
+<!--script admin-->
+<script src="{{ asset('assets/') }}//js/admin-script.js"></script>
+<script>
+    $('.single-item').slick({
+            arrows: false,
+            dots: true
+        }
+    );
+</script>
+
+</body>
+
 </html>

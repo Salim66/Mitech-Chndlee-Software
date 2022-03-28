@@ -20,9 +20,23 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->integer('type')->nullable();
+            $table->integer('users')->nullable();
+            $table->integer('entery_passport')->nullable();
+            $table->integer('test_medical')->nullable();
+            $table->integer('final_medical')->nullable();
+            $table->integer('police_clearance')->nullable();
+            $table->integer('mofa')->nullable();
+            $table->integer('visa')->nullable();
+            $table->integer('traning_certificate')->nullable();
+            $table->integer('man_power')->nullable();
+            $table->integer('flight')->nullable();
+            $table->integer('accounts')->nullable();
+            $table->integer('agent')->nullable();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
