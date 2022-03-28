@@ -5,10 +5,10 @@
     </div>
     <div class="sidebar custom-scrollbar">
         <div class="sidebar-user text-center">
-            <div><img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/') }}//images/dashboard/man.png" alt="#">
+            <div><img class="img-60 rounded-circle lazyloaded blur-up" src="{{ (!empty(Auth::user()->profile_photo_path)) ? URL::to(Auth::user()->profile_photo_path) : URL::to('assets/images/dashboard/designer.jpg') }}" alt="#" style="width: 60px; height: 60px; object-fit: cover;">
             </div>
-            <h6 class="mt-3 f-14">JOHN</h6>
-            <p>general manager.</p>
+            <h6 class="mt-3 f-14">{{ Auth::user()->name }}</h6>
+            <p>{{ Auth::user()->email }}</p>
         </div>
         <ul class="sidebar-menu">
             <li><a class="sidebar-header" href="index.html"><i data-feather="home"></i><span>Dashboard</span></a></li>

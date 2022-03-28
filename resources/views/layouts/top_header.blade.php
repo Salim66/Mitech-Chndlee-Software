@@ -16,12 +16,12 @@
 
 
                 <li class="onhover-dropdown">
-                    <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/') }}//images/dashboard/man.png" alt="header-user">
+                    <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ (!empty(Auth::user()->profile_photo_path)) ? URL::to(Auth::user()->profile_photo_path) : URL::to('assets/images/dashboard/designer.jpg') }}" alt="header-user" style="width: 50px; height: 50px; object-fit: cover;">
                         <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-                        <li><a href=""><i data-feather="user"></i>Profile</a></li>
-                        <li><a href="#"><i data-feather="lock"></i>Change Password</a></li>
+                        <li><a href="{{ route('user.profile') }}"><i data-feather="user"></i>Profile</a></li>
+                        <li><a href="{{ route('user.change-password') }}"><i data-feather="lock"></i>Change Password</a></li>
                         <li><a href="{{ route('logout') }}"><i data-feather="log-out"></i>Logout</a></li>
                     </ul>
                 </li>

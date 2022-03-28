@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Admin Logout Route
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     // User List Routes
     Route::prefix('users')->group(function () {
@@ -45,6 +45,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/trash-list', [AdminController::class, 'usersTrashList'])->name('trash.user');
         Route::get('/revocer/{id}', [AdminController::class, 'usersRecover'])->name('recover.user');
         Route::get('/permanent-delete/{id}', [AdminController::class, 'usersPermanentDelete'])->name('permanent.delete.user');
+
+        // User Profile
+        Route::get('/profile', [AdminController::class, 'userProfile'])->name('user.profile');
+        Route::get('/profile/edit/{id}', [AdminController::class, 'userProfileEdit'])->name('user.profile.edit');
+        Route::patch('/profile/update/{id}', [AdminController::class, 'usersUpdateProfile'])->name('update.user.profile');
+
+        // User Change Password
+        Route::get('/change-password', [AdminController::class, 'changePassword'])->name('user.change-password');
+        Route::patch('/password-update/{id}', [AdminController::class, 'updatePassword'])->name('user.password-update');
     });
+
+
 
 });
