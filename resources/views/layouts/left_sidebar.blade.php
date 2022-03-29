@@ -23,7 +23,7 @@
             @endif
 
             @if(Auth::user()->entery_passport == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="clipboard"></i><span>Entry Passport</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('passport.list') }}"><i data-feather="clipboard"></i><span>Entry Passport</span></a></li>
             @endif
 
             @if(Auth::user()->test_medical == 1)

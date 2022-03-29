@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EntryPassportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,19 @@ Route::middleware(['auth'])->group(function () {
         // User Change Password
         Route::get('/change-password', [AdminController::class, 'changePassword'])->name('user.change-password');
         Route::patch('/password-update/{id}', [AdminController::class, 'updatePassword'])->name('user.password-update');
+    });
+
+    // Entry Passport
+    Route::prefix('passport')->group(function(){
+        Route::get('/list', [EntryPassportController::class, 'passportList'])->name('passport.list');
+        Route::get('/create', [EntryPassportController::class, 'passportCreate'])->name('add.passport');
+        Route::post('/store', [EntryPassportController::class, 'passportStore'])->name('store.passport');
+        Route::get('/edit/{id}', [EntryPassportController::class, 'passportEdit'])->name('edit.passport');
+        Route::patch('/update/{id}', [EntryPassportController::class, 'passportUpdate'])->name('update.passport');
+        Route::get('/delete/{id}', [EntryPassportController::class, 'passportDelete'])->name('delete.passport');
+        Route::get('/trash-list', [EntryPassportController::class, 'passportTrashList'])->name('trash.passport');
+        Route::get('/revocer/{id}', [EntryPassportController::class, 'passportRecover'])->name('recover.passport');
+        Route::get('/permanent-delete/{id}', [EntryPassportController::class, 'passportPermanentDelete'])->name('permanent.delete.passport');
     });
 
 
