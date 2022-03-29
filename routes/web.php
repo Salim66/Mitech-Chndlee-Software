@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TestMedicalController;
 use App\Http\Controllers\EntryPassportController;
 
 /*
@@ -68,6 +69,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trash-list', [EntryPassportController::class, 'passportTrashList'])->name('trash.passport');
         Route::get('/revocer/{id}', [EntryPassportController::class, 'passportRecover'])->name('recover.passport');
         Route::get('/permanent-delete/{id}', [EntryPassportController::class, 'passportPermanentDelete'])->name('permanent.delete.passport');
+    });
+
+    // Test Medical
+    Route::prefix('test-medical')->group(function(){
+        Route::get('/list', [TestMedicalController::class, 'tMedicalList'])->name('tMedical.list');
+        Route::get('/create', [TestMedicalController::class, 'tMedicalCreate'])->name('add.tMedical');
+        Route::post('/store', [TestMedicalController::class, 'tMedicalStore'])->name('store.tMedical');
+        Route::get('/edit/{id}', [TestMedicalController::class, 'tMedicalEdit'])->name('edit.tMedical');
+        Route::patch('/update/{id}', [TestMedicalController::class, 'tMedicalUpdate'])->name('update.tMedical');
+        Route::get('/delete/{id}', [TestMedicalController::class, 'tMedicalDelete'])->name('delete.tMedical');
+        Route::get('/trash-list', [TestMedicalController::class, 'tMedicalTrashList'])->name('trash.tMedical');
+        Route::get('/revocer/{id}', [TestMedicalController::class, 'tMedicalRecover'])->name('recover.tMedical');
+        Route::get('/permanent-delete/{id}', [TestMedicalController::class, 'tMedicalPermanentDelete'])->name('permanent.delete.tMedical');
     });
 
 

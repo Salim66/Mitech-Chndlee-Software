@@ -27,7 +27,7 @@
             @endif
 
             @if(Auth::user()->test_medical == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="tag"></i><span>Test Medical</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('tMedical.list') }}"><i data-feather="tag"></i><span>Test Medical</span></a></li>
             @endif
 
             @if(Auth::user()->final_medical == 1)
