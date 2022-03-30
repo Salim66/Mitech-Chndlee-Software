@@ -11,7 +11,7 @@ class TestMedicalController extends Controller
      * Test Mediacl list
      */
     public function tMedicalList(){
-        $all_data = TestMedical::latest()->get();
+        $all_data = TestMedical::where('status', 0)->latest()->get();
         return view('test-medical.all_tMedical', [
             'all_data' => $all_data
         ]);
@@ -84,6 +84,25 @@ class TestMedicalController extends Controller
     }
 
     /**
+     * test Medical Status Done
+     */
+    public function tMedicalStatus($id){
+        $data = TestMedical::findOrFail($id);
+
+        if($data){
+            $data->status = 1;
+            $data->update();
+        }
+
+        $notification = [
+            'message' => 'Test medical status Done',
+            'alert-type' => 'warning',
+        ];
+
+        return redirect()->route('tMedical.list')->with($notification);
+    }
+
+    /**
      * Test medical Delete
      */
     public function tMedicalDelete($id){
@@ -101,7 +120,7 @@ class TestMedicalController extends Controller
      * Test medical Trash list
      */
     public function tMedicalTrashList(){
-        $all_data = TestMedical::onlyTrashed()->latest()->get();
+        $all_data = TestMedical::onlyTrashed()->where('status', 0)->latest()->get();
         return view('test-medical.trash_tMedical', [
             'all_data' => $all_data
         ]);

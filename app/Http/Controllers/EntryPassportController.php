@@ -11,7 +11,7 @@ class EntryPassportController extends Controller
      * Passport list
      */
     public function passportList(){
-        $all_data = EntryPassport::latest()->get();
+        $all_data = EntryPassport::where('status', 0)->latest()->get();
         return view('passport.all_passport', [
             'all_data' => $all_data
         ]);
@@ -90,6 +90,25 @@ class EntryPassportController extends Controller
     }
 
     /**
+     * Passport Status Done
+     */
+    public function passportStatus($id){
+        $data = EntryPassport::findOrFail($id);
+
+        if($data){
+            $data->status = 1;
+            $data->update();
+        }
+
+        $notification = [
+            'message' => 'Entry passport status Done',
+            'alert-type' => 'warning',
+        ];
+
+        return redirect()->route('passport.list')->with($notification);
+    }
+
+    /**
      * Passport Delete
      */
     public function passportDelete($id){
@@ -107,7 +126,7 @@ class EntryPassportController extends Controller
      * Password Trash list
      */
     public function passportTrashList(){
-        $all_data = EntryPassport::onlyTrashed()->latest()->get();
+        $all_data = EntryPassport::onlyTrashed()->where('status', 0)->latest()->get();
         return view('passport.trash_passport', [
             'all_data' => $all_data
         ]);

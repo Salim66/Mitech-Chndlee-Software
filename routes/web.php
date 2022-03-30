@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MofaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TestMedicalController;
+use App\Http\Controllers\FinalMedicalController;
 use App\Http\Controllers\EntryPassportController;
+use App\Http\Controllers\PoliceClearanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [EntryPassportController::class, 'passportEdit'])->name('edit.passport');
         Route::patch('/update/{id}', [EntryPassportController::class, 'passportUpdate'])->name('update.passport');
         Route::get('/delete/{id}', [EntryPassportController::class, 'passportDelete'])->name('delete.passport');
+        Route::get('/status/{id}', [EntryPassportController::class, 'passportStatus'])->name('status.passport');
         Route::get('/trash-list', [EntryPassportController::class, 'passportTrashList'])->name('trash.passport');
         Route::get('/revocer/{id}', [EntryPassportController::class, 'passportRecover'])->name('recover.passport');
         Route::get('/permanent-delete/{id}', [EntryPassportController::class, 'passportPermanentDelete'])->name('permanent.delete.passport');
@@ -79,9 +83,52 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [TestMedicalController::class, 'tMedicalEdit'])->name('edit.tMedical');
         Route::patch('/update/{id}', [TestMedicalController::class, 'tMedicalUpdate'])->name('update.tMedical');
         Route::get('/delete/{id}', [TestMedicalController::class, 'tMedicalDelete'])->name('delete.tMedical');
+        Route::get('/status/{id}', [TestMedicalController::class, 'tMedicalStatus'])->name('status.tMedical');
         Route::get('/trash-list', [TestMedicalController::class, 'tMedicalTrashList'])->name('trash.tMedical');
         Route::get('/revocer/{id}', [TestMedicalController::class, 'tMedicalRecover'])->name('recover.tMedical');
         Route::get('/permanent-delete/{id}', [TestMedicalController::class, 'tMedicalPermanentDelete'])->name('permanent.delete.tMedical');
+    });
+
+    // Final Medical
+    Route::prefix('final-medical')->group(function(){
+        Route::get('/list', [FinalMedicalController::class, 'fMedicalList'])->name('fMedical.list');
+        Route::get('/create', [FinalMedicalController::class, 'fMedicalCreate'])->name('add.fMedical');
+        Route::post('/store', [FinalMedicalController::class, 'fMedicalStore'])->name('store.fMedical');
+        Route::get('/edit/{id}', [FinalMedicalController::class, 'fMedicalEdit'])->name('edit.fMedical');
+        Route::patch('/update/{id}', [FinalMedicalController::class, 'fMedicalUpdate'])->name('update.fMedical');
+        Route::get('/delete/{id}', [FinalMedicalController::class, 'fMedicalDelete'])->name('delete.fMedical');
+        Route::get('/status/{id}', [FinalMedicalController::class, 'fMedicalStatus'])->name('status.fMedical');
+        Route::get('/trash-list', [FinalMedicalController::class, 'fMedicalTrashList'])->name('trash.fMedical');
+        Route::get('/revocer/{id}', [FinalMedicalController::class, 'fMedicalRecover'])->name('recover.fMedical');
+        Route::get('/permanent-delete/{id}', [FinalMedicalController::class, 'fMedicalPermanentDelete'])->name('permanent.delete.fMedical');
+    });
+
+    // Police Clearance
+    Route::prefix('police-clearance')->group(function(){
+        Route::get('/list', [PoliceClearanceController::class, 'pClearanceList'])->name('pClearance.list');
+        Route::get('/create', [PoliceClearanceController::class, 'pClearanceCreate'])->name('add.pClearance');
+        Route::post('/store', [PoliceClearanceController::class, 'pClearanceStore'])->name('store.pClearance');
+        Route::get('/edit/{id}', [PoliceClearanceController::class, 'pClearanceEdit'])->name('edit.pClearance');
+        Route::patch('/update/{id}', [PoliceClearanceController::class, 'pClearanceUpdate'])->name('update.pClearance');
+        Route::get('/delete/{id}', [PoliceClearanceController::class, 'pClearanceDelete'])->name('delete.pClearance');
+        Route::get('/status/{id}', [PoliceClearanceController::class, 'pClearanceStatus'])->name('status.pClearance');
+        Route::get('/trash-list', [PoliceClearanceController::class, 'pClearanceTrashList'])->name('trash.pClearance');
+        Route::get('/revocer/{id}', [PoliceClearanceController::class, 'pClearanceRecover'])->name('recover.pClearance');
+        Route::get('/permanent-delete/{id}', [PoliceClearanceController::class, 'pClearancePermanentDelete'])->name('permanent.delete.pClearance');
+    });
+
+    // Mofa
+    Route::prefix('mofa')->group(function(){
+        Route::get('/list', [MofaController::class, 'mofaList'])->name('mofa.list');
+        Route::get('/create', [MofaController::class, 'mofaCreate'])->name('add.mofa');
+        Route::post('/store', [MofaController::class, 'mofaStore'])->name('store.mofa');
+        Route::get('/edit/{id}', [MofaController::class, 'mofaEdit'])->name('edit.mofa');
+        Route::patch('/update/{id}', [MofaController::class, 'mofaUpdate'])->name('update.mofa');
+        Route::get('/delete/{id}', [MofaController::class, 'mofaDelete'])->name('delete.mofa');
+        Route::get('/status/{id}', [MofaController::class, 'mofaStatus'])->name('status.mofa');
+        Route::get('/trash-list', [MofaController::class, 'mofaTrashList'])->name('trash.mofa');
+        Route::get('/revocer/{id}', [MofaController::class, 'mofaRecover'])->name('recover.mofa');
+        Route::get('/permanent-delete/{id}', [MofaController::class, 'mofaPermanentDelete'])->name('permanent.delete.mofa');
     });
 
 

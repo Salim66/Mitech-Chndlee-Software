@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('mobile_no');
             $table->string('visa_type');
             $table->string('reference');
+            $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

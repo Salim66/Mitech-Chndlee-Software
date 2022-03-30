@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('test_medicals', function (Blueprint $table) {
+        Schema::create('police_clearances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('entry_passport_id');
-            $table->foreign('entry_passport_id')->references('id')->on('entry_passports')->onDelete('cascade');
-            $table->string('medical_attend_date');
-            $table->string('report_delivery_date');
-            $table->string('medical_report_status');
+            $table->unsignedBigInteger('final_medical_id');
+            $table->foreign('final_medical_id')->references('id')->on('entry_passports')->onDelete('cascade');
+            $table->string('police_clearance_date');
+            $table->string('police_clearance_report');
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_medicals');
+        Schema::dropIfExists('police_clearances');
     }
 };

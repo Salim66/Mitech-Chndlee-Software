@@ -59,8 +59,10 @@
                             <td> {{ $data->medical_attend_date }} </td>
                             <td> {{ $data->report_delivery_date }} </td>
                             <td> {{ $data->medical_report_status }} </td>
-                            <td style="width: 16%">
+                            <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.tMedical', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
+
+                                <a title="Done" href="{{ route('status.tMedical', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-thumbs-up'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.tMedical', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>

@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="page-header-left">
-                        <h3>Test Medical
+                        <h3>Create Final Medical
                             <small>Multikart Admin panel</small>
                         </h3>
                     </div>
@@ -17,8 +17,8 @@
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
                         <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">Test Medical </li>
-                        <li class="breadcrumb-item active">Edit Test Medical </li>
+                        <li class="breadcrumb-item">Final Medical </li>
+                        <li class="breadcrumb-item active">Create Final Medical </li>
                     </ol>
                 </div>
             </div>
@@ -27,7 +27,8 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $entry_passport = App\Models\EntryPassport::where('status', 1)->latest()->get();
+        $test_medical = App\Models\TestMedical::with('entry')->where('status', 1)->latest()->get();
+        // dd($test_medical);
     @endphp
 
     <!-- Container-fluid starts-->
@@ -36,26 +37,28 @@
             <div class="col-sm-12">
                 <div class="card tab2-card">
                     <div class="card-header">
-                        <h5> Edit Test Medical</h5>
+                        <h5> Add Final Medical</h5>
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
-                                <form class="needs-validation user-add" novalidate="" action="{{ route('update.tMedical', $data->id) }}" method="POST">
+                                <form action="{{ route('store.fMedical') }}" method="POST">
                                     @csrf
-                                    @method('PATCH')
 
                                     <div class="form-group row">
-                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Entry Passport</label>
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Test Medical</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="entry_passport_id">
+                                            <select class="form-control digits" id="exampleFormControlSelect1" name="test_medical_id">
                                                 <option disabled selected>--Select--</option>
-                                                @foreach($entry_passport as $passport)
-                                                <option value="{{ $passport->id }}" {{ ($data->id == $passport->id) ? 'selected' : ''  }}>{{ $passport->name }} | {{ $passport->passport_no }}</option>
+                                                @foreach($test_medical as $tmediacl)
+
+                                                <option value="{{ $tmediacl->entry->id }}">{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }}</option>
+
+
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('entry_passport_id')
+                                        @error('test_medical_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -63,7 +66,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Medical Attand Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="medical_attend_date" id="validationCustom0" type="date" required="" value="{{ $data->medical_attend_date }}">
+                                            <input class="form-control" name="medical_attend_date" id="validationCustom0" type="date" required="">
                                         </div>
                                         @error('medical_attend_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -73,7 +76,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Report Delivery Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="report_delivery_date" id="validationCustom0" type="date" required="" value="{{ $data->report_delivery_date }}">
+                                            <input class="form-control" name="report_delivery_date" id="validationCustom0" type="date" required="">
                                         </div>
                                         @error('report_delivery_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -83,7 +86,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Medical Report Status</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="medical_report_status" id="validationCustom0" type="text" required="" value="{{ $data->medical_report_status }}">
+                                            <input class="form-control" name="medical_report_status" id="validationCustom0" type="text" required="">
                                         </div>
                                         @error('medical_report_status')
                                             <span class="text-danger">{{ $message }}</span>
@@ -91,9 +94,8 @@
                                     </div>
 
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>

@@ -31,15 +31,15 @@
             @endif
 
             @if(Auth::user()->final_medical == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="align-left"></i><span>Final Medical</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('fMedical.list') }}"><i data-feather="align-left"></i><span>Final Medical</span></a></li>
             @endif
 
             @if(Auth::user()->police_clearance == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="bar-chart"></i><span>Police Clearance</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('pClearance.list') }}"><i data-feather="bar-chart"></i><span>Police Clearance</span></a></li>
             @endif
 
             @if(Auth::user()->mofa == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="chrome"></i><span>Mofa</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('mofa.list') }}"><i data-feather="chrome"></i><span>Mofa</span></a></li>
             @endif
 
             @if(Auth::user()->visa == 1)

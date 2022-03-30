@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('test_medicals', function (Blueprint $table) {
+        Schema::create('final_medicals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('entry_passport_id');
-            $table->foreign('entry_passport_id')->references('id')->on('entry_passports')->onDelete('cascade');
+            $table->unsignedBigInteger('test_medical_id');
+            $table->foreign('test_medical_id')->references('id')->on('entry_passports')->onDelete('cascade');
+            $table->string('name')->nullable();
+            $table->string('passport_no')->nullable();
             $table->string('medical_attend_date');
             $table->string('report_delivery_date');
             $table->string('medical_report_status');
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_medicals');
+        Schema::dropIfExists('final_medicals');
     }
 };
