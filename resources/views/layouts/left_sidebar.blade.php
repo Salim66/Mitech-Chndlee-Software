@@ -43,19 +43,19 @@
             @endif
 
             @if(Auth::user()->visa == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="box"></i><span>Visa</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('visa.list') }}"><i data-feather="box"></i><span>Visa</span></a></li>
             @endif
 
             @if(Auth::user()->traning_certificate == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="shopping-bag"></i><span>Training Certificate</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('tran.list') }}"><i data-feather="shopping-bag"></i><span>Training Certificate</span></a></li>
             @endif
 
             @if(Auth::user()->man_power == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="users"></i><span>Man Power</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('man.list') }}"><i data-feather="users"></i><span>Man Power</span></a></li>
             @endif
 
             @if(Auth::user()->flight == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="navigation"></i><span>Flight</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('flight.list') }}"><i data-feather="navigation"></i><span>Flight</span></a></li>
             @endif
 
             @if(Auth::user()->accounts == 1)

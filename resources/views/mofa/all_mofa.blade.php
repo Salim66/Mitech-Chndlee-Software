@@ -43,7 +43,7 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> Final Medical </th>
+                            <th> Police Clierance </th>
                             <th> Mofa Date </th>
                             <th> Mofa Report </th>
                             <th> Action </th>

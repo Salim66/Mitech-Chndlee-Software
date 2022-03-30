@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MofaController;
+use App\Http\Controllers\VisaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FlightController;
+use App\Http\Controllers\ManPowerController;
+use App\Http\Controllers\TranCertiController;
 use App\Http\Controllers\TestMedicalController;
 use App\Http\Controllers\FinalMedicalController;
 use App\Http\Controllers\EntryPassportController;
@@ -129,6 +133,62 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trash-list', [MofaController::class, 'mofaTrashList'])->name('trash.mofa');
         Route::get('/revocer/{id}', [MofaController::class, 'mofaRecover'])->name('recover.mofa');
         Route::get('/permanent-delete/{id}', [MofaController::class, 'mofaPermanentDelete'])->name('permanent.delete.mofa');
+    });
+
+    // Visa
+    Route::prefix('visa')->group(function(){
+        Route::get('/list', [VisaController::class, 'visaList'])->name('visa.list');
+        Route::get('/create', [VisaController::class, 'visaCreate'])->name('add.visa');
+        Route::post('/store', [VisaController::class, 'visaStore'])->name('store.visa');
+        Route::get('/edit/{id}', [VisaController::class, 'visaEdit'])->name('edit.visa');
+        Route::patch('/update/{id}', [VisaController::class, 'visaUpdate'])->name('update.visa');
+        Route::get('/delete/{id}', [VisaController::class, 'visaDelete'])->name('delete.visa');
+        Route::get('/status/{id}', [VisaController::class, 'visaStatus'])->name('status.visa');
+        Route::get('/trash-list', [VisaController::class, 'visaTrashList'])->name('trash.visa');
+        Route::get('/revocer/{id}', [VisaController::class, 'visaRecover'])->name('recover.visa');
+        Route::get('/permanent-delete/{id}', [VisaController::class, 'visaPermanentDelete'])->name('permanent.delete.visa');
+    });
+
+    // Training Certificate
+    Route::prefix('training')->group(function(){
+        Route::get('/list', [TranCertiController::class, 'tranList'])->name('tran.list');
+        Route::get('/create', [TranCertiController::class, 'tranCreate'])->name('add.tran');
+        Route::post('/store', [TranCertiController::class, 'tranStore'])->name('store.tran');
+        Route::get('/edit/{id}', [TranCertiController::class, 'tranEdit'])->name('edit.tran');
+        Route::patch('/update/{id}', [TranCertiController::class, 'tranUpdate'])->name('update.tran');
+        Route::get('/delete/{id}', [TranCertiController::class, 'tranDelete'])->name('delete.tran');
+        Route::get('/status/{id}', [TranCertiController::class, 'tranStatus'])->name('status.tran');
+        Route::get('/trash-list', [TranCertiController::class, 'tranTrashList'])->name('trash.tran');
+        Route::get('/revocer/{id}', [TranCertiController::class, 'tranRecover'])->name('recover.tran');
+        Route::get('/permanent-delete/{id}', [TranCertiController::class, 'tranPermanentDelete'])->name('permanent.delete.tran');
+    });
+
+    // Man Power
+    Route::prefix('man-power')->group(function(){
+        Route::get('/list', [ManPowerController::class, 'manList'])->name('man.list');
+        Route::get('/create', [ManPowerController::class, 'manCreate'])->name('add.man');
+        Route::post('/store', [ManPowerController::class, 'manStore'])->name('store.man');
+        Route::get('/edit/{id}', [ManPowerController::class, 'manEdit'])->name('edit.man');
+        Route::patch('/update/{id}', [ManPowerController::class, 'manUpdate'])->name('update.man');
+        Route::get('/delete/{id}', [ManPowerController::class, 'manDelete'])->name('delete.man');
+        Route::get('/status/{id}', [ManPowerController::class, 'manStatus'])->name('status.man');
+        Route::get('/trash-list', [ManPowerController::class, 'manTrashList'])->name('trash.man');
+        Route::get('/revocer/{id}', [ManPowerController::class, 'manRecover'])->name('recover.man');
+        Route::get('/permanent-delete/{id}', [ManPowerController::class, 'manPermanentDelete'])->name('permanent.delete.man');
+    });
+
+    // Flight
+    Route::prefix('flight')->group(function(){
+        Route::get('/list', [FlightController::class, 'flightList'])->name('flight.list');
+        Route::get('/create', [FlightController::class, 'flightCreate'])->name('add.flight');
+        Route::post('/store', [FlightController::class, 'flightStore'])->name('store.flight');
+        Route::get('/edit/{id}', [FlightController::class, 'flightEdit'])->name('edit.flight');
+        Route::patch('/update/{id}', [FlightController::class, 'flightUpdate'])->name('update.flight');
+        Route::get('/delete/{id}', [FlightController::class, 'flightDelete'])->name('delete.flight');
+        Route::get('/status/{id}', [FlightController::class, 'flightStatus'])->name('status.flight');
+        Route::get('/trash-list', [FlightController::class, 'flightTrashList'])->name('trash.flight');
+        Route::get('/revocer/{id}', [FlightController::class, 'flightRecover'])->name('recover.flight');
+        Route::get('/permanent-delete/{id}', [FlightController::class, 'flightPermanentDelete'])->name('permanent.delete.flight');
     });
 
 
