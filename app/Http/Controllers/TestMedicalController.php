@@ -11,8 +11,28 @@ class TestMedicalController extends Controller
      * Test Mediacl list
      */
     public function tMedicalList(){
-        $all_data = TestMedical::where('status', 0)->latest()->get();
+        $all_data = TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
         return view('test-medical.all_tMedical', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Test Mediacl Pending list
+     */
+    public function tMedicalPendingList(){
+        $all_data = TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
+        return view('test-medical.all_pending_tMedical', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Test Mediacl Done list
+     */
+    public function tMedicalDoneList(){
+        $all_data = TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->latest()->get();
+        return view('test-medical.all_done_tMedical', [
             'all_data' => $all_data
         ]);
     }
@@ -29,10 +49,7 @@ class TestMedicalController extends Controller
      */
     public function tMedicalStore(Request $request){
         $this->validate($request, [
-            'entry_passport_id' => 'required',
-            'medical_attend_date' => 'required',
-            'report_delivery_date' => 'required',
-            'medical_report_status' => 'required',
+            'entry_passport_id' => 'required'
         ]);
 
         // return $request->all();

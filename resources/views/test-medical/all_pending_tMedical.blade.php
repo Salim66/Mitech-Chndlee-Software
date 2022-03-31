@@ -30,11 +30,10 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
+                <h5>Pending Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
             <div class="btn-popup">
                 <a href="{{ route('trash.tMedical') }}" class="badge badge-danger float-left ml-4">Trash Test Medical List</a>
-                <a href="{{ route('add.tMedical') }}" class="btn btn-secondary float-right mr-4">Create Test Medical</a>
             </div>
             <div class="card-body">
 

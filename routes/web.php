@@ -82,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
     // Test Medical
     Route::prefix('test-medical')->group(function(){
         Route::get('/list', [TestMedicalController::class, 'tMedicalList'])->name('tMedical.list');
+        Route::get('/pending-list', [TestMedicalController::class, 'tMedicalPendingList'])->name('tMedical.pending.list');
+        Route::get('/done-list', [TestMedicalController::class, 'tMedicalDoneList'])->name('tMedical.done.list');
         Route::get('/create', [TestMedicalController::class, 'tMedicalCreate'])->name('add.tMedical');
         Route::post('/store', [TestMedicalController::class, 'tMedicalStore'])->name('store.tMedical');
         Route::get('/edit/{id}', [TestMedicalController::class, 'tMedicalEdit'])->name('edit.tMedical');
@@ -96,6 +98,8 @@ Route::middleware(['auth'])->group(function () {
     // Final Medical
     Route::prefix('final-medical')->group(function(){
         Route::get('/list', [FinalMedicalController::class, 'fMedicalList'])->name('fMedical.list');
+        Route::get('/pending-list', [FinalMedicalController::class, 'fMedicalPendingList'])->name('fMedical.pending.list');
+        Route::get('/done-list', [FinalMedicalController::class, 'fMedicalDoneList'])->name('fMedical.done.list');
         Route::get('/create', [FinalMedicalController::class, 'fMedicalCreate'])->name('add.fMedical');
         Route::post('/store', [FinalMedicalController::class, 'fMedicalStore'])->name('store.fMedical');
         Route::get('/edit/{id}', [FinalMedicalController::class, 'fMedicalEdit'])->name('edit.fMedical');

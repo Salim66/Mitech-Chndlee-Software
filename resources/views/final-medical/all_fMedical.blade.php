@@ -30,7 +30,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Final Medical Details</h5>
+                <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
             <div class="btn-popup">
                 <a href="{{ route('trash.fMedical') }}" class="badge badge-danger float-left ml-4">Trash Final Medical List</a>
@@ -59,10 +59,8 @@
                             <td> {{ $data->medical_attend_date }} </td>
                             <td> {{ $data->report_delivery_date }} </td>
                             <td> {{ $data->medical_report_status }} </td>
-                            <td style="width: 23%">
+                            <td style="width: 16%">
                                 <a title="Edit" href="{{ route('edit.fMedical', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
-
-                                <a title="Done" href="{{ route('status.fMedical', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-thumbs-up'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.fMedical', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>

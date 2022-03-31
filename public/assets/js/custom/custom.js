@@ -37,6 +37,11 @@
 
         });
 
+        // Select2
+        $('.select2').select2({
+            closeOnSelect: false
+        });
+
 
     });
 })(jQuery);

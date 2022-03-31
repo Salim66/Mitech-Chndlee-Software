@@ -48,7 +48,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Test Medical</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="test_medical_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="test_medical_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($test_medical as $tmediacl)
 
@@ -66,7 +66,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Medical Attand Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="medical_attend_date" id="validationCustom0" type="date" required="">
+                                            <input class="form-control" name="medical_attend_date" id="validationCustom0" type="date">
                                         </div>
                                         @error('medical_attend_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -76,7 +76,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Report Delivery Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="report_delivery_date" id="validationCustom0" type="date" required="">
+                                            <input class="form-control" name="report_delivery_date" id="validationCustom0" type="date">
                                         </div>
                                         @error('report_delivery_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -86,7 +86,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Medical Report Status</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="medical_report_status" id="validationCustom0" type="text" required="">
+                                            <input class="form-control" name="medical_report_status" id="validationCustom0" type="text">
                                         </div>
                                         @error('medical_report_status')
                                             <span class="text-danger">{{ $message }}</span>

@@ -51,6 +51,12 @@
 
         <!-- Custom css-->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}//css/custom/custom.css">
+
+        <!-- Select2 css -->
+        <script src="{{ asset('assets/') }}//js/jquery-3.3.1.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+
     </head>
 
 <body>
@@ -63,7 +69,7 @@
         <!-- Page Body Start-->
         <div class="page-body-wrapper">
 
-            @include('layouts.left_sidebar')
+            @include('layouts.sidebar')
 
             @include('layouts.right_sidebar')
 
@@ -76,7 +82,7 @@
     </div>
 
     <!-- latest jquery-->
-    <script src="{{ asset('assets/') }}//js/jquery-3.3.1.min.js"></script>
+
 
     <!-- Bootstrap js-->
     <script src="{{ asset('assets/') }}//js/bootstrap.bundle.min.js"></script>
@@ -144,6 +150,8 @@
 
     <!-- Sweetalert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('assets/') }}//js/custom/custom.js"></script>

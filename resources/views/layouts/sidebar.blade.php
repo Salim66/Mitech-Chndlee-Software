@@ -10,8 +10,15 @@
             <h6 class="mt-3 f-14">{{ Auth::user()->name }}</h6>
             <p>{{ Auth::user()->email }}</p>
         </div>
+
+
+        @php
+            $prefix = Request::route()->getPrefix();
+            $route = Route::current()->getName();
+        @endphp
+
         <ul class="sidebar-menu">
-            <li><a class="sidebar-header" href="index.html"><i data-feather="home"></i><span>Dashboard</span></a></li>
+            <li><a class="sidebar-header active" href="{{ route('dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
 
             @if(Auth::user()->users == 1)
             <li><a class="sidebar-header" href="#"><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
@@ -26,12 +33,40 @@
             <li><a class="sidebar-header" href="{{ route('passport.list') }}"><i data-feather="clipboard"></i><span>Entry Passport</span></a></li>
             @endif
 
+            <!-- Count Test Medical -->
+            @php
+                $tm_new = App\Models\TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $tm_pending = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $tm_done = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Test Medical -->
+
             @if(Auth::user()->test_medical == 1)
-            <li><a class="sidebar-header" href="{{ route('tMedical.list') }}"><i data-feather="tag"></i><span>Test Medical</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="tag"></i><span>Test Medical</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('tMedical.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $tm_new }}</span> )</li>
+                    <li><a href="{{ route('tMedical.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $tm_pending }}</span> )</li>
+                    <li><a href="{{ route('tMedical.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $tm_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
 
+            <!-- Count Final Medical -->
+            @php
+                $fm_new = App\Models\FinalMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $fm_pending = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $fm_done = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Final Medical -->
+
             @if(Auth::user()->final_medical == 1)
-            <li><a class="sidebar-header" href="{{ route('fMedical.list') }}"><i data-feather="align-left"></i><span>Final Medical</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="align-left"></i><span>Final Medical</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('fMedical.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $fm_new }}</span> )</li>
+                    <li><a href="{{ route('fMedical.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $fm_pending }}</span> )</li>
+                    <li><a href="{{ route('fMedical.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $fm_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
 
             @if(Auth::user()->police_clearance == 1)

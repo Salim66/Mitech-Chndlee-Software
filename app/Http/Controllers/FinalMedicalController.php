@@ -11,9 +11,31 @@ class FinalMedicalController extends Controller
      * Final Mediacl list
      */
     public function fMedicalList(){
-        $all_data = FinalMedical::with('entry')->where('status', 0)->latest()->get();
+        $all_data = FinalMedical::with('entry')->where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('final-medical.all_fMedical', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Final Mediacl pending list
+     */
+    public function fMedicalPendingList(){
+        $all_data = FinalMedical::with('entry')->where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('final-medical.all_pending_fMedical', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Final Mediacl Done list
+     */
+    public function fMedicalDoneList(){
+        $all_data = FinalMedical::with('entry')->where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('final-medical.all_pending_fMedical', [
             'all_data' => $all_data
         ]);
     }
@@ -30,10 +52,7 @@ class FinalMedicalController extends Controller
      */
     public function fMedicalStore(Request $request){
         $this->validate($request, [
-            'test_medical_id' => 'required',
-            'medical_attend_date' => 'required',
-            'report_delivery_date' => 'required',
-            'medical_report_status' => 'required',
+            'test_medical_id' => 'required'
         ]);
 
         // return $request->all();
