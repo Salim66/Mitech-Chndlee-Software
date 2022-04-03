@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MofaController;
 use App\Http\Controllers\VisaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\ManPowerController;
 use App\Http\Controllers\TranCertiController;
@@ -211,6 +212,20 @@ Route::middleware(['auth'])->group(function () {
     // Final State
     Route::get('/final-state', [FinalStateController::class, 'finalStateList'])->name('final.state.list');
     Route::get('/delete/final-state/{id}', [FinalStateController::class, 'deleteFinalState'])->name('delete.final.state');
+
+
+    // Agent List Routes
+    Route::prefix('agents')->group(function () {
+        Route::get('/list', [AgentController::class, 'agentsList'])->name('agents.list');
+        Route::get('/create', [AgentController::class, 'agentsCreate'])->name('add.agent');
+        Route::post('/store', [AgentController::class, 'agentsStore'])->name('store.agent');
+        Route::get('/edit/{id}', [AgentController::class, 'agentsEdit'])->name('edit.agent');
+        Route::patch('/update/{id}', [AgentController::class, 'agentsUpdate'])->name('update.agent');
+        Route::get('/delete/{id}', [AgentController::class, 'agentsDelete'])->name('delete.agent');
+        Route::get('/trash-list', [AgentController::class, 'agentsTrashList'])->name('trash.agent');
+        Route::get('/revocer/{id}', [AgentController::class, 'agentsRecover'])->name('recover.agent');
+        Route::get('/permanent-delete/{id}', [AgentController::class, 'agentsPermanentDelete'])->name('permanent.delete.agent');
+    });
 
 
 

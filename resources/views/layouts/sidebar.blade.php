@@ -186,7 +186,7 @@
             @endif
 
             @if(Auth::user()->agent == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="user"></i><span>Agent</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('agents.list') }}"><i data-feather="user"></i><span>Agent</span></a></li>
             @endif
 
         </ul>
