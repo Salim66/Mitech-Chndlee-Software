@@ -28,6 +28,12 @@
 
     @php
         $entry_passport = App\Models\EntryPassport::where('status', 1)->latest()->get();
+        $test_medical = App\Models\TestMedical::all();
+        $select_test_medical = [];
+        foreach ($test_medical as $test){
+            array_push($select_test_medical, $test -> entry_passport_id);
+        }
+        // dd($select_test_medical);
     @endphp
 
     <!-- Container-fluid starts-->
@@ -50,7 +56,13 @@
                                             <select class="form-control digits select2" id="exampleFormControlSelect1" name="entry_passport_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($entry_passport as $passport)
-                                                <option value="{{ $passport->id }}">{{ $passport->name }} | {{ $passport->passport_no }}</option>
+
+                                                    @if(in_array($passport->id, $select_test_medical))
+
+                                                    @else
+                                                        <option value="{{ $passport->id }}">{{ $passport->name }} | {{ $passport->passport_no }}</option>
+                                                    @endif
+
                                                 @endforeach
                                             </select>
                                         </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\TranCertiController;
 use App\Http\Controllers\TestMedicalController;
 use App\Http\Controllers\FinalMedicalController;
 use App\Http\Controllers\EntryPassportController;
+use App\Http\Controllers\FinalStateController;
 use App\Http\Controllers\PoliceClearanceController;
 
 /*
@@ -114,6 +115,8 @@ Route::middleware(['auth'])->group(function () {
     // Police Clearance
     Route::prefix('police-clearance')->group(function(){
         Route::get('/list', [PoliceClearanceController::class, 'pClearanceList'])->name('pClearance.list');
+        Route::get('/pending-list', [PoliceClearanceController::class, 'pClearancePendingList'])->name('pClearance.pending.list');
+        Route::get('/done-list', [PoliceClearanceController::class, 'pClearanceDoneList'])->name('pClearance.done.list');
         Route::get('/create', [PoliceClearanceController::class, 'pClearanceCreate'])->name('add.pClearance');
         Route::post('/store', [PoliceClearanceController::class, 'pClearanceStore'])->name('store.pClearance');
         Route::get('/edit/{id}', [PoliceClearanceController::class, 'pClearanceEdit'])->name('edit.pClearance');
@@ -128,6 +131,8 @@ Route::middleware(['auth'])->group(function () {
     // Mofa
     Route::prefix('mofa')->group(function(){
         Route::get('/list', [MofaController::class, 'mofaList'])->name('mofa.list');
+        Route::get('/pending-list', [MofaController::class, 'mofaPendingList'])->name('mofa.pending.list');
+        Route::get('/done-list', [MofaController::class, 'mofaDoneList'])->name('mofa.done.list');
         Route::get('/create', [MofaController::class, 'mofaCreate'])->name('add.mofa');
         Route::post('/store', [MofaController::class, 'mofaStore'])->name('store.mofa');
         Route::get('/edit/{id}', [MofaController::class, 'mofaEdit'])->name('edit.mofa');
@@ -142,6 +147,8 @@ Route::middleware(['auth'])->group(function () {
     // Visa
     Route::prefix('visa')->group(function(){
         Route::get('/list', [VisaController::class, 'visaList'])->name('visa.list');
+        Route::get('/pending-list', [VisaController::class, 'visaPendingList'])->name('visa.pending.list');
+        Route::get('/done-list', [VisaController::class, 'visaDoneList'])->name('visa.done.list');
         Route::get('/create', [VisaController::class, 'visaCreate'])->name('add.visa');
         Route::post('/store', [VisaController::class, 'visaStore'])->name('store.visa');
         Route::get('/edit/{id}', [VisaController::class, 'visaEdit'])->name('edit.visa');
@@ -156,6 +163,8 @@ Route::middleware(['auth'])->group(function () {
     // Training Certificate
     Route::prefix('training')->group(function(){
         Route::get('/list', [TranCertiController::class, 'tranList'])->name('tran.list');
+        Route::get('/pending-list', [TranCertiController::class, 'tranPendingList'])->name('tran.pending.list');
+        Route::get('/done-list', [TranCertiController::class, 'tranDoneList'])->name('tran.done.list');
         Route::get('/create', [TranCertiController::class, 'tranCreate'])->name('add.tran');
         Route::post('/store', [TranCertiController::class, 'tranStore'])->name('store.tran');
         Route::get('/edit/{id}', [TranCertiController::class, 'tranEdit'])->name('edit.tran');
@@ -170,6 +179,8 @@ Route::middleware(['auth'])->group(function () {
     // Man Power
     Route::prefix('man-power')->group(function(){
         Route::get('/list', [ManPowerController::class, 'manList'])->name('man.list');
+        Route::get('/pending-list', [ManPowerController::class, 'manPendingList'])->name('man.pending.list');
+        Route::get('/done-list', [ManPowerController::class, 'manDoneList'])->name('man.done.list');
         Route::get('/create', [ManPowerController::class, 'manCreate'])->name('add.man');
         Route::post('/store', [ManPowerController::class, 'manStore'])->name('store.man');
         Route::get('/edit/{id}', [ManPowerController::class, 'manEdit'])->name('edit.man');
@@ -184,6 +195,8 @@ Route::middleware(['auth'])->group(function () {
     // Flight
     Route::prefix('flight')->group(function(){
         Route::get('/list', [FlightController::class, 'flightList'])->name('flight.list');
+        Route::get('/pending-list', [FlightController::class, 'flightPendingList'])->name('flight.pending.list');
+        Route::get('/done-list', [FlightController::class, 'flightDoneList'])->name('flight.done.list');
         Route::get('/create', [FlightController::class, 'flightCreate'])->name('add.flight');
         Route::post('/store', [FlightController::class, 'flightStore'])->name('store.flight');
         Route::get('/edit/{id}', [FlightController::class, 'flightEdit'])->name('edit.flight');
@@ -194,6 +207,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/revocer/{id}', [FlightController::class, 'flightRecover'])->name('recover.flight');
         Route::get('/permanent-delete/{id}', [FlightController::class, 'flightPermanentDelete'])->name('permanent.delete.flight');
     });
+
+    // Final State
+    Route::get('/final-state', [FinalStateController::class, 'finalStateList'])->name('final.state.list');
+    Route::get('/delete/final-state/{id}', [FinalStateController::class, 'deleteFinalState'])->name('delete.final.state');
 
 
 

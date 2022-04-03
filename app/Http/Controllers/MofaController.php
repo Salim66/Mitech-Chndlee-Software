@@ -11,9 +11,31 @@ class MofaController extends Controller
      * Mofa list
      */
     public function mofaList(){
-        $all_data = Mofa::with('entry')->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', null)->where('mofa_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_mofa', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Mofa Pending list
+     */
+    public function mofaPendingList(){
+        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('mofa.all_pending_mofa', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Mofa Done list
+     */
+    public function mofaDoneList(){
+        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('mofa.all_done_mofa', [
             'all_data' => $all_data
         ]);
     }
@@ -30,9 +52,7 @@ class MofaController extends Controller
      */
     public function mofaStore(Request $request){
         $this->validate($request, [
-            'police_clearance_id' => 'required',
-            'mofa_date' => 'required',
-            'mofa_report' => 'required',
+            'police_clearance_id' => 'required'
         ]);
 
         // return $request->all();
@@ -97,7 +117,7 @@ class MofaController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('mofa.list')->with($notification);
+        return redirect()->route('mofa.done.list')->with($notification);
     }
 
     /**

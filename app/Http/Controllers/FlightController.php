@@ -11,9 +11,30 @@ class FlightController extends Controller
      * Flight list
      */
     public function flightList(){
-        $all_data = Flight::with('entry')->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', null)->where('flight_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_flight', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Flight Pending list
+     */
+    public function flightPendingList(){
+        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('flight.all_pending_flight', [
+            'all_data' => $all_data
+        ]);
+    }
+    /**
+     * Flight Done list
+     */
+    public function flightDoneList(){
+        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('flight.all_done_flight', [
             'all_data' => $all_data
         ]);
     }
@@ -30,9 +51,7 @@ class FlightController extends Controller
      */
     public function flightStore(Request $request){
         $this->validate($request, [
-            'man_id' => 'required',
-            'flight_date' => 'required',
-            'flight_report' => 'required',
+            'man_id' => 'required'
         ]);
 
         // return $request->all();
@@ -97,7 +116,7 @@ class FlightController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('flight.list')->with($notification);
+        return redirect()->route('flight.done.list')->with($notification);
     }
 
     /**

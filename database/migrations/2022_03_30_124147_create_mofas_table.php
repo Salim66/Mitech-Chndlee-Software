@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('police_clearance_id');
             $table->foreign('police_clearance_id')->references('id')->on('entry_passports')->onDelete('cascade');
-            $table->string('mofa_date');
-            $table->string('mofa_report');
+            $table->string('mofa_date')->nullable();
+            $table->string('mofa_report')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

@@ -22,7 +22,7 @@ class FinalMedicalController extends Controller
      * Final Mediacl pending list
      */
     public function fMedicalPendingList(){
-        $all_data = FinalMedical::with('entry')->where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
+        $all_data = FinalMedical::with('entry')->where('medical_report_status', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('final-medical.all_pending_fMedical', [
             'all_data' => $all_data
@@ -35,7 +35,7 @@ class FinalMedicalController extends Controller
     public function fMedicalDoneList(){
         $all_data = FinalMedical::with('entry')->where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->latest()->get();
         // dd($all_data);
-        return view('final-medical.all_pending_fMedical', [
+        return view('final-medical.all_done_fMedical', [
             'all_data' => $all_data
         ]);
     }
@@ -119,7 +119,7 @@ class FinalMedicalController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('fMedical.list')->with($notification);
+        return redirect()->route('fMedical.done.list')->with($notification);
     }
 
     /**

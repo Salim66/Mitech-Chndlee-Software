@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('final_medical_id');
             $table->foreign('final_medical_id')->references('id')->on('entry_passports')->onDelete('cascade');
-            $table->string('police_clearance_date');
-            $table->string('police_clearance_report');
+            $table->string('police_clearance_date')->nullable();
+            $table->string('police_clearance_report')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('mofa_id');
             $table->foreign('mofa_id')->references('id')->on('entry_passports')->onDelete('cascade');
-            $table->string('visa_date');
-            $table->string('visa_report');
+            $table->string('visa_date')->nullable();
+            $table->string('visa_report')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

@@ -49,7 +49,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Police Clearance</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="police_clearance_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="police_clearance_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
@@ -67,7 +67,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Police Clearance Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="mofa_date" id="validationCustom0" type="date" required="" value="{{ $data->mofa_date }}">
+                                            <input class="form-control" name="mofa_date" id="validationCustom0" type="date" value="{{ $data->mofa_date }}">
                                         </div>
                                         @error('mofa_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -77,7 +77,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Police Clearance Report</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="mofa_report" id="validationCustom0" type="text" required="" value="{{ $data->mofa_report }}">
+                                            <input class="form-control" name="mofa_report" id="validationCustom0" type="text" value="{{ $data->mofa_report }}">
                                         </div>
                                         @error('mofa_report')
                                             <span class="text-danger">{{ $message }}</span>

@@ -30,7 +30,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Flight Details</h5>
+                <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
             <div class="btn-popup">
                 <a href="{{ route('trash.flight') }}" class="badge badge-danger float-left ml-4">Trash Flight List</a>
@@ -59,8 +59,6 @@
                             <td> {{ $data->flight_report }} </td>
                             <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.flight', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
-
-                                <a title="Done" href="{{ route('status.flight', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-thumbs-up'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.flight', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>

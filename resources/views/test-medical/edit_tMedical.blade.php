@@ -48,10 +48,10 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Entry Passport</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="entry_passport_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="entry_passport_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($entry_passport as $passport)
-                                                <option value="{{ $passport->id }}" {{ ($data->id == $passport->id) ? 'selected' : ''  }}>{{ $passport->name }} | {{ $passport->passport_no }}</option>
+                                                <option value="{{ $passport->id }}" {{ ($data->entry_passport_id == $passport->id) ? 'selected' : ''  }}>{{ $passport->name }} | {{ $passport->passport_no }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

@@ -28,6 +28,12 @@
 
     @php
         $test_medical = App\Models\TestMedical::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\FinalMedical::all();
+        $select_final_medical = [];
+        foreach ($final_medical as $final){
+            array_push($select_final_medical, $final -> test_medical_id);
+        }
+        // dd($select_final_medical);
         // dd($test_medical);
     @endphp
 
@@ -52,8 +58,11 @@
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($test_medical as $tmediacl)
 
-                                                <option value="{{ $tmediacl->entry->id }}">{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }}</option>
+                                                @if(in_array($tmediacl->entry_passport_id, $select_final_medical))
 
+                                                @else
+                                                <option value="{{ $tmediacl->entry->id }}">{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }}</option>
+                                                @endif
 
                                                 @endforeach
                                             </select>

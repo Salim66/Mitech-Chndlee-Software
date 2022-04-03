@@ -11,9 +11,31 @@ class TranCertiController extends Controller
      * Training list
      */
     public function tranList(){
-        $all_data = TranCerti::with('entry')->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', null)->where('tran_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_tran', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Training Pending list
+     */
+    public function tranPendingList(){
+        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('tran.all_pending_tran', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Training Done list
+     */
+    public function tranDoneList(){
+        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('tran.all_done_tran', [
             'all_data' => $all_data
         ]);
     }
@@ -30,9 +52,7 @@ class TranCertiController extends Controller
      */
     public function tranStore(Request $request){
         $this->validate($request, [
-            'visa_id' => 'required',
-            'tran_date' => 'required',
-            'tran_report' => 'required',
+            'visa_id' => 'required'
         ]);
 
         // return $request->all();
@@ -97,7 +117,7 @@ class TranCertiController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('tran.list')->with($notification);
+        return redirect()->route('tran.done.list')->with($notification);
     }
 
     /**

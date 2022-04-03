@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('man_id');
             $table->foreign('man_id')->references('id')->on('entry_passports')->onDelete('cascade');
-            $table->string('flight_date');
-            $table->string('flight_report');
+            $table->string('flight_date')->nullable();
+            $table->string('flight_report')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

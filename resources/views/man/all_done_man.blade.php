@@ -30,11 +30,10 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
+                <h5>Done Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
             <div class="btn-popup">
                 <a href="{{ route('trash.man') }}" class="badge badge-danger float-left ml-4">Trash Man Power List</a>
-                <a href="{{ route('add.man') }}" class="btn btn-secondary float-right mr-4">Create Man Power</a>
             </div>
             <div class="card-body">
 
@@ -57,8 +56,10 @@
                             <td style="width: 30% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }}</td>
                             <td> {{ $data->man_date }} </td>
                             <td> {{ $data->man_report }} </td>
-                            <td style="width: 16%">
+                            <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.man', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
+
+                                <a title="Done" href="{{ route('status.man', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-thumbs-up'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.man', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>

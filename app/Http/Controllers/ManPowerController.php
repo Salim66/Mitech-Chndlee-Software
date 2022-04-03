@@ -11,9 +11,31 @@ class ManPowerController extends Controller
      * Man list
      */
     public function manList(){
-        $all_data = ManPower::with('entry')->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', null)->where('man_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_man', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Man Pending list
+     */
+    public function manPendingList(){
+        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('man.all_pending_man', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Man Done list
+     */
+    public function manDoneList(){
+        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('man.all_done_man', [
             'all_data' => $all_data
         ]);
     }
@@ -30,9 +52,7 @@ class ManPowerController extends Controller
      */
     public function manStore(Request $request){
         $this->validate($request, [
-            'tran_id' => 'required',
-            'man_date' => 'required',
-            'man_report' => 'required',
+            'tran_id' => 'required'
         ]);
 
         // return $request->all();
@@ -97,7 +117,7 @@ class ManPowerController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('man.list')->with($notification);
+        return redirect()->route('man.done.list')->with($notification);
     }
 
     /**

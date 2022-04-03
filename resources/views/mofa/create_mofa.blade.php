@@ -28,6 +28,12 @@
 
     @php
         $final_medical = App\Models\PoliceClearance::with('entry')->where('status', 1)->latest()->get();
+        $mofa_all = App\Models\Mofa::all();
+        $mofa = [];
+        foreach ($mofa_all as $mof){
+            array_push($mofa, $mof -> police_clearance_id);
+        }
+        // dd($select_police_medical);
         // dd($test_medical);
     @endphp
 
@@ -48,12 +54,15 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Police Clearance</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="police_clearance_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="police_clearance_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                @if(in_array($fmediacl->final_medical_id, $mofa))
 
+                                                @else
+                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                @endif
 
                                                 @endforeach
                                             </select>
@@ -66,7 +75,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Police Clearance Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="mofa_date" id="validationCustom0" type="date" required="">
+                                            <input class="form-control" name="mofa_date" id="validationCustom0" type="date">
                                         </div>
                                         @error('mofa_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -76,7 +85,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Police Clearance Report</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="mofa_report" id="validationCustom0" type="text" required="">
+                                            <input class="form-control" name="mofa_report" id="validationCustom0" type="text">
                                         </div>
                                         @error('mofa_report')
                                             <span class="text-danger">{{ $message }}</span>

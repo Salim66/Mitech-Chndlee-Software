@@ -28,6 +28,12 @@
 
     @php
         $final_medical = App\Models\ManPower::with('entry')->where('status', 1)->latest()->get();
+        $select_flight = App\Models\Flight::all();
+        $flight = [];
+        foreach ($select_flight as $s_flight){
+            array_push($flight, $s_flight -> man_id);
+        }
+        // dd($select_police_medical);
         // dd($test_medical);
     @endphp
 
@@ -48,12 +54,15 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Man Power</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="man_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="man_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                @if(in_array($fmediacl->tran_id, $flight))
 
+                                                @else
+                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                @endif
 
                                                 @endforeach
                                             </select>
@@ -66,7 +75,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Man Power Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="flight_date" id="validationCustom0" type="date" required="">
+                                            <input class="form-control" name="flight_date" id="validationCustom0" type="date">
                                         </div>
                                         @error('flight_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -76,7 +85,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>flight Power Report</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="flight_report" id="validationCustom0" type="text" required="">
+                                            <input class="form-control" name="flight_report" id="validationCustom0" type="text">
                                         </div>
                                         @error('flight_report')
                                             <span class="text-danger">{{ $message }}</span>

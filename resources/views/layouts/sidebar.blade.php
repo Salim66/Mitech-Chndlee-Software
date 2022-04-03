@@ -1,7 +1,7 @@
 <!-- Page Sidebar Start-->
 <div class="page-sidebar">
     <div class="main-header-left d-none d-lg-block">
-        <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded" src="{{ asset('assets/') }}//images/dashboard/multikart-logo.png" alt=""></a></div>
+        <div class="logo-wrapper"><a href="{{ route('dashboard') }}"><img class="blur-up lazyloaded" src="{{ asset('assets/') }}//images/dashboard/LOGO-ALL.png" alt=""></a></div>
     </div>
     <div class="sidebar custom-scrollbar">
         <div class="sidebar-user text-center">
@@ -18,12 +18,12 @@
         @endphp
 
         <ul class="sidebar-menu">
-            <li><a class="sidebar-header active" href="{{ route('dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
+            <li class="{{ ($prefix == '/dashboard') ? 'active' : '' }}"><a class="sidebar-header {{ ($route == 'dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
 
             @if(Auth::user()->users == 1)
-            <li><a class="sidebar-header" href="#"><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
+            <li class="active"><a class="sidebar-header" href="#"><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="{{ route('users.list') }}"><i class="fa fa-circle"></i>User List</a></li>
+                    <li class="active"><a href="{{ route('users.list') }}"><i class="fa fa-circle"></i>User List</a></li>
                     <li><a href="{{ route('add.user') }}"><i class="fa fa-circle"></i>Create User</a></li>
                 </ul>
             </li>
@@ -36,7 +36,7 @@
             <!-- Count Test Medical -->
             @php
                 $tm_new = App\Models\TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->count();
-                $tm_pending = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $tm_pending = App\Models\TestMedical::where('medical_report_status', null)->where('status', 0)->count();
                 $tm_done = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Test Medical -->
@@ -54,7 +54,7 @@
             <!-- Count Final Medical -->
             @php
                 $fm_new = App\Models\FinalMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->count();
-                $fm_pending = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $fm_pending = App\Models\FinalMedical::where('medical_report_status', null)->where('status', 0)->count();
                 $fm_done = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Final Medical -->
@@ -69,28 +69,116 @@
             </li>
             @endif
 
+            <!-- Count Police Clearance -->
+            @php
+                $pc_new = App\Models\PoliceClearance::where('police_clearance_date', null)->where('police_clearance_report', null)->where('status', 0)->count();
+                $pc_pending = App\Models\PoliceClearance::where('police_clearance_date', '!=', null)->where('police_clearance_report', null)->where('status', 0)->count();
+                $pc_done = App\Models\PoliceClearance::where('police_clearance_date', '!=', null)->where('police_clearance_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Police Clearance -->
+
             @if(Auth::user()->police_clearance == 1)
-            <li><a class="sidebar-header" href="{{ route('pClearance.list') }}"><i data-feather="bar-chart"></i><span>Police Clearance</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="bar-chart"></i><span>Police Clearance</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('pClearance.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $pc_new }}</span> )</li>
+                    <li><a href="{{ route('pClearance.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $pc_pending }}</span> )</li>
+                    <li><a href="{{ route('pClearance.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $pc_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
+
+            <!-- Count Mofa -->
+            @php
+                $mofa_new = App\Models\Mofa::where('mofa_date', null)->where('mofa_report', null)->where('status', 0)->count();
+                $mofa_pending = App\Models\Mofa::where('mofa_date', '!=', null)->where('mofa_report', null)->where('status', 0)->count();
+                $mofa_done = App\Models\Mofa::where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Mofa -->
 
             @if(Auth::user()->mofa == 1)
-            <li><a class="sidebar-header" href="{{ route('mofa.list') }}"><i data-feather="chrome"></i><span>Mofa</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="chrome"></i><span>Mofa</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('mofa.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $mofa_new }}</span> )</li>
+                    <li><a href="{{ route('mofa.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $mofa_pending }}</span> )</li>
+                    <li><a href="{{ route('mofa.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $mofa_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
+
+            <!-- Count Visa -->
+            @php
+                $visa_new = App\Models\Visa::where('visa_date', null)->where('visa_report', null)->where('status', 0)->count();
+                $visa_pending = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->count();
+                $visa_done = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Visa -->
 
             @if(Auth::user()->visa == 1)
-            <li><a class="sidebar-header" href="{{ route('visa.list') }}"><i data-feather="box"></i><span>Visa</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="box"></i><span>Visa</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('visa.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $visa_new }}</span> )</li>
+                    <li><a href="{{ route('visa.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $visa_pending }}</span> )</li>
+                    <li><a href="{{ route('visa.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $visa_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
+
+            <!-- Count Training Certificate -->
+            @php
+                $tran_new = App\Models\TranCerti::where('tran_date', null)->where('tran_report', null)->where('status', 0)->count();
+                $tran_pending = App\Models\TranCerti::where('tran_date', '!=', null)->where('tran_report', null)->where('status', 0)->count();
+                $tran_done = App\Models\TranCerti::where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Training Certificate -->
 
             @if(Auth::user()->traning_certificate == 1)
-            <li><a class="sidebar-header" href="{{ route('tran.list') }}"><i data-feather="shopping-bag"></i><span>Training Certificate</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="shopping-bag"></i><span>Training Certificate</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('tran.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $tran_new }}</span> )</li>
+                    <li><a href="{{ route('tran.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $tran_pending }}</span> )</li>
+                    <li><a href="{{ route('tran.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $tran_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
 
+            <!-- Count Man Power -->
+            @php
+                $man_new = App\Models\ManPower::where('man_date', null)->where('man_report', null)->where('status', 0)->count();
+                $man_pending = App\Models\ManPower::where('man_date', '!=', null)->where('man_report', null)->where('status', 0)->count();
+                $man_done = App\Models\ManPower::where('man_date', '!=', null)->where('man_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Man Power -->
+
             @if(Auth::user()->man_power == 1)
-            <li><a class="sidebar-header" href="{{ route('man.list') }}"><i data-feather="users"></i><span>Man Power</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="users"></i><span>Man Power</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('man.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $man_new }}</span> )</li>
+                    <li><a href="{{ route('man.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $man_pending }}</span> )</li>
+                    <li><a href="{{ route('man.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $man_done }}</span> )</li>
+                </ul>
+            </li>
+            @endif
+
+            <!-- Count Flight -->
+            @php
+                $flight_new = App\Models\Flight::where('flight_date', null)->where('flight_report', null)->where('status', 0)->count();
+                $flight_pending = App\Models\Flight::where('flight_date', '!=', null)->where('flight_report', null)->where('status', 0)->count();
+                $flight_done = App\Models\Flight::where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Flight -->
+
+            @if(Auth::user()->flight == 1)
+            <li><a class="sidebar-header" href="#"><i data-feather="navigation"></i><span>Flight</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('flight.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $flight_new }}</span> )</li>
+                    <li><a href="{{ route('flight.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $flight_pending }}</span> )</li>
+                    <li><a href="{{ route('flight.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $flight_done }}</span> )</li>
+                </ul>
+            </li>
             @endif
 
             @if(Auth::user()->flight == 1)
-            <li><a class="sidebar-header" href="{{ route('flight.list') }}"><i data-feather="navigation"></i><span>Flight</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('final.state.list') }}"><i data-feather="clipboard"></i><span>Final State</span></a></li>
             @endif
 
             @if(Auth::user()->accounts == 1)

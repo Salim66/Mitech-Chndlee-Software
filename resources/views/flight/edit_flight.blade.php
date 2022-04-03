@@ -49,7 +49,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Man Power</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="man_id">
+                                            <select class="form-control digits select" id="exampleFormControlSelect1" name="man_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
@@ -67,7 +67,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Flight Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="flight_date" id="validationCustom0" type="date" required="" value="{{ $data->flight_date }}">
+                                            <input class="form-control" name="flight_date" id="validationCustom0" type="date" value="{{ $data->flight_date }}">
                                         </div>
                                         @error('flight_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -77,7 +77,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Flight Report</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="flight_report" id="validationCustom0" type="text" required="" value="{{ $data->flight_report }}">
+                                            <input class="form-control" name="flight_report" id="validationCustom0" type="text" value="{{ $data->flight_report }}">
                                         </div>
                                         @error('flight_report')
                                             <span class="text-danger">{{ $message }}</span>

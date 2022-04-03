@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="page-header-left">
-                        <h3>Man Power List
+                        <h3>Police Clearance List
                             <small>Multikart Admin panel</small>
                         </h3>
                     </div>
@@ -17,8 +17,8 @@
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
                         <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">Man Power</li>
-                        <li class="breadcrumb-item active">Man Power List</li>
+                        <li class="breadcrumb-item">Police Clearance</li>
+                        <li class="breadcrumb-item active">Police Clearance List</li>
                     </ol>
                 </div>
             </div>
@@ -30,11 +30,10 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
+                <h5>Done Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
             <div class="btn-popup">
-                <a href="{{ route('trash.man') }}" class="badge badge-danger float-left ml-4">Trash Man Power List</a>
-                <a href="{{ route('add.man') }}" class="btn btn-secondary float-right mr-4">Create Man Power</a>
+                <a href="{{ route('trash.pClearance') }}" class="badge badge-danger float-left ml-4">Trash Police Clearance List</a>
             </div>
             <div class="card-body">
 
@@ -43,9 +42,9 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> Training Certificate </th>
-                            <th> Man Power Date </th>
-                            <th> Man Power Report </th>
+                            <th> Final Medical </th>
+                            <th> Police Clearance Date </th>
+                            <th> Police Clearance Report </th>
                             <th> Action </th>
                           </tr>
                         </thead>
@@ -55,12 +54,14 @@
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
                             <td style="width: 30% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }}</td>
-                            <td> {{ $data->man_date }} </td>
-                            <td> {{ $data->man_report }} </td>
-                            <td style="width: 16%">
-                                <a title="Edit" href="{{ route('edit.man', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
+                            <td> {{ $data->police_clearance_date }} </td>
+                            <td> {{ $data->police_clearance_report }} </td>
+                            <td style="width: 23%">
+                                <a title="Edit" href="{{ route('edit.pClearance', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 
-                                <a title="Delete" href="{{ route('delete.man', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
+                                <a title="Done" href="{{ route('status.pClearance', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-thumbs-up'></i></a>
+
+                                <a title="Delete" href="{{ route('delete.pClearance', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
                           </tr>
                         @endforeach

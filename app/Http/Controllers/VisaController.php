@@ -11,9 +11,31 @@ class VisaController extends Controller
      * Visa list
      */
     public function visaList(){
-        $all_data = Visa::with('entry')->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', null)->where('visa_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_visa', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Visa Pending list
+     */
+    public function visaPendingList(){
+        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('visa.all_pending_visa', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Visa Done list
+     */
+    public function visaDoneList(){
+        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('visa.all_done_visa', [
             'all_data' => $all_data
         ]);
     }
@@ -30,9 +52,7 @@ class VisaController extends Controller
      */
     public function visaStore(Request $request){
         $this->validate($request, [
-            'mofa_id' => 'required',
-            'visa_date' => 'required',
-            'visa_report' => 'required',
+            'mofa_id' => 'required'
         ]);
 
         // return $request->all();
@@ -97,7 +117,7 @@ class VisaController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('visa.list')->with($notification);
+        return redirect()->route('visa.done.list')->with($notification);
     }
 
     /**

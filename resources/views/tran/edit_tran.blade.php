@@ -49,7 +49,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Visa</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="visa_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="visa_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
@@ -67,7 +67,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Trainint Certificate Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="tran_date" id="validationCustom0" type="date" required="" value="{{ $data->tran_date }}">
+                                            <input class="form-control" name="tran_date" id="validationCustom0" type="date" value="{{ $data->tran_date }}">
                                         </div>
                                         @error('tran_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -77,7 +77,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Trainint Certificate Report</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="tran_report" id="validationCustom0" type="text" required="" value="{{ $data->tran_report }}">
+                                            <input class="form-control" name="tran_report" id="validationCustom0" type="text" value="{{ $data->tran_report }}">
                                         </div>
                                         @error('tran_report')
                                             <span class="text-danger">{{ $message }}</span>

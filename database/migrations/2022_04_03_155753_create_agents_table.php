@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tran_certis', function (Blueprint $table) {
+        Schema::create('agents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('visa_id');
-            $table->foreign('visa_id')->references('id')->on('entry_passports')->onDelete('cascade');
-            $table->string('tran_date')->nullable();
-            $table->string('tran_report')->nullable();
-            $table->boolean('status')->default(0);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tran_certis');
+        Schema::dropIfExists('agents');
     }
 };

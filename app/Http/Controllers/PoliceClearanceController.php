@@ -11,9 +11,31 @@ class PoliceClearanceController extends Controller
      * Police Clearance list
      */
     public function pClearanceList(){
-        $all_data = PoliceClearance::with('entry')->where('status', 0)->latest()->get();
+        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', null)->where('police_clearance_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('police-clearance.all_pClearance', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Police Clearance Pending list
+     */
+    public function pClearancePendingList(){
+        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', '!=', null)->where('police_clearance_report', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('police-clearance.all_pending_pClearance', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Police Clearance Done list
+     */
+    public function pClearanceDoneList(){
+        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', '!=', null)->where('police_clearance_report', '!=', null)->where('status', 0)->latest()->get();
+        // dd($all_data);
+        return view('police-clearance.all_done_pClearance', [
             'all_data' => $all_data
         ]);
     }
@@ -30,9 +52,7 @@ class PoliceClearanceController extends Controller
      */
     public function pClearanceStore(Request $request){
         $this->validate($request, [
-            'final_medical_id' => 'required',
-            'police_clearance_date' => 'required',
-            'police_clearance_report' => 'required',
+            'final_medical_id' => 'required'
         ]);
 
         // return $request->all();
@@ -97,7 +117,7 @@ class PoliceClearanceController extends Controller
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('pClearance.list')->with($notification);
+        return redirect()->route('pClearance.done.list')->with($notification);
     }
 
     /**

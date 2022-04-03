@@ -28,6 +28,12 @@
 
     @php
         $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->latest()->get();
+        $visa_all = App\Models\Visa::all();
+        $visa = [];
+        foreach ($visa_all as $vi){
+            array_push($visa, $vi -> mofa_id);
+        }
+        // dd($select_police_medical);
         // dd($test_medical);
     @endphp
 
@@ -48,12 +54,15 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Mofa</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits" id="exampleFormControlSelect1" name="mofa_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="mofa_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                @if(in_array($fmediacl->police_clearance_id, $visa))
 
+                                                @else
+                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                @endif
 
                                                 @endforeach
                                             </select>
@@ -66,7 +75,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Visa Date</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="visa_date" id="validationCustom0" type="date" required="">
+                                            <input class="form-control" name="visa_date" id="validationCustom0" type="date">
                                         </div>
                                         @error('visa_date')
                                             <span class="text-danger">{{ $message }}</span>
@@ -76,7 +85,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Visa Report</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="visa_report" id="validationCustom0" type="text" required="">
+                                            <input class="form-control" name="visa_report" id="validationCustom0" type="text">
                                         </div>
                                         @error('visa_report')
                                             <span class="text-danger">{{ $message }}</span>
