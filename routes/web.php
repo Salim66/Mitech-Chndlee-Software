@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MofaController;
 use App\Http\Controllers\VisaController;
@@ -225,6 +226,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trash-list', [AgentController::class, 'agentsTrashList'])->name('trash.agent');
         Route::get('/revocer/{id}', [AgentController::class, 'agentsRecover'])->name('recover.agent');
         Route::get('/permanent-delete/{id}', [AgentController::class, 'agentsPermanentDelete'])->name('permanent.delete.agent');
+    });
+
+
+    // Account List Routes
+    Route::prefix('accounts')->group(function () {
+        Route::get('/list', [AccountController::class, 'accountsList'])->name('accounts.list');
+        Route::get('/create', [AccountController::class, 'accountsCreate'])->name('add.account');
+        Route::post('/store', [AccountController::class, 'accountsStore'])->name('store.account');
+        Route::get('/edit/{id}', [AccountController::class, 'accountsEdit'])->name('edit.account');
+        Route::post('/update', [AccountController::class, 'accountsUpdate'])->name('update.account');
+        Route::post('/delete', [AccountController::class, 'accountsDelete'])->name('delete.account');
+        Route::get('/trash-list', [AccountController::class, 'accountsTrashList'])->name('trash.account');
+        Route::get('/revocer/{id}', [AccountController::class, 'accountsRecover'])->name('recover.account');
+        Route::get('/permanent-delete/{id}', [AccountController::class, 'accountsPermanentDelete'])->name('permanent.delete.account');
     });
 
 

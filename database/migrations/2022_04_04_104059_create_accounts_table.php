@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entry_passports', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('date');
-            $table->string('name');
-            $table->string('passport_no');
-            $table->string('mobile_no');
-            $table->string('visa_type');
             $table->unsignedBigInteger('agent_id');
-            $table->boolean('status')->default(0);
+            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
+            $table->string('amount');
+            $table->string('purpose');
+            $table->string('payment_receive_status');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entry_passports');
+        Schema::dropIfExists('accounts');
     }
 };

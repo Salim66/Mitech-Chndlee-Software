@@ -48,7 +48,7 @@
                             <th> Passport No. </th>
                             <th> Mobile No. </th>
                             <th> Visa Type </th>
-                            <th> Reference </th>
+                            <th> Agent Name </th>
                             <th> Action </th>
                           </tr>
                         </thead>
@@ -62,7 +62,7 @@
                             <td> {{ $data->passport_no }} </td>
                             <td> {{ $data->mobile_no }} </td>
                             <td> {{ $data->visa_type }} </td>
-                            <td> {{ $data->reference }} </td>
+                            <td> {{ $data->agents->name }} </td>
                             <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.passport', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 

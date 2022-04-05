@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\TranCerti::with('entry')->where('status', 1)->latest()->get();
         // dd($final_medical);
     @endphp
 
@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" role="tabpanel" aria-labelledby="account-tab">
                                 <form class="needs-validation user-add" novalidate="" action="{{ route('update.visa', $data->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')

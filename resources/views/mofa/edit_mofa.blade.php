@@ -41,7 +41,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" role="tabpanel" aria-labelledby="account-tab">
                                 <form class="needs-validation user-add" novalidate="" action="{{ route('update.mofa', $data->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')

@@ -11,7 +11,7 @@ class EntryPassportController extends Controller
      * Passport list
      */
     public function passportList(){
-        $all_data = EntryPassport::where('status', 0)->latest()->get();
+        $all_data = EntryPassport::with('agents')->where('status', 0)->latest()->get();
         return view('passport.all_passport', [
             'all_data' => $all_data
         ]);
@@ -34,7 +34,7 @@ class EntryPassportController extends Controller
             'passport_no' => 'required',
             'mobile_no' => 'required',
             'visa_type' => 'required',
-            'reference' => 'required',
+            'agent_id' => 'required',
         ]);
 
 
@@ -44,7 +44,7 @@ class EntryPassportController extends Controller
             'passport_no' => $request->passport_no,
             'mobile_no' => $request->mobile_no,
             'visa_type' => $request->visa_type,
-            'reference' => $request->reference,
+            'agent_id' => $request->agent_id,
         ]);
 
         $notification = [
@@ -77,7 +77,7 @@ class EntryPassportController extends Controller
         $data->passport_no = $request->passport_no;
         $data->mobile_no = $request->mobile_no;
         $data->visa_type = $request->visa_type;
-        $data->reference = $request->reference;
+        $data->agent_id = $request->agent_id;
         $data->update();
 
         $notification = [

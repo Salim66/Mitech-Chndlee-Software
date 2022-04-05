@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\TranCerti::with('entry')->where('status', 1)->latest()->get();
         $visa_all = App\Models\Visa::all();
         $visa = [];
         foreach ($visa_all as $vi){
@@ -47,7 +47,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" role="tabpanel" aria-labelledby="account-tab">
                                 <form action="{{ route('store.visa') }}" method="POST">
                                     @csrf
 

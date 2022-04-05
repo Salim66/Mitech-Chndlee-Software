@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\TranCerti::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->latest()->get();
         $man_power = App\Models\ManPower::all();
         $power = [];
         foreach ($man_power as $man){
@@ -47,7 +47,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" role="tabpanel" aria-labelledby="account-tab">
                                 <form action="{{ route('store.man') }}" method="POST">
                                     @csrf
 

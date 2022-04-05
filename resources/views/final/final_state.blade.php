@@ -46,13 +46,13 @@
                             <th> Pas.No </th>
                             <th> Mob.No </th>
                             <th> Visa Ty </th>
-                            <th> Ref </th>
+                            <th> Ag.Name </th>
                             <th> T.M.S </th>
                             <th> F.M.S </th>
                             <th> P.C.S </th>
                             <th> M.R </th>
-                            <th> V.R </th>
                             <th> T.C.R </th>
+                            <th> V.R </th>
                             <th> M.P.R </th>
                             <th> F.R </th>
                             <th> Action </th>
@@ -67,17 +67,17 @@
                             <td> {{ $data->passport_no }} </td>
                             <td> {{ $data->mobile_no }} </td>
                             <td> {{ $data->visa_type }} </td>
-                            <td> {{ $data->reference }} </td>
+                            <td> {{ $data->agents->name }} </td>
                             <td> {{ @$data->test_medicals->medical_report_status }} </td>
                             <td> {{ @$data->final_medicals->medical_report_status }} </td>
                             <td> {{ @$data->police_clearances->police_clearance_report }} </td>
                             <td> {{ @$data->mofas->mofa_report }} </td>
-                            <td> {{ @$data->visas->visa_report }} </td>
                             <td> {{ @$data->tran_certis->tran_report }} </td>
+                            <td> {{ @$data->visas->visa_report }} </td>
                             <td> {{ @$data->man_powers->man_report }} </td>
                             <td> {{ @$data->flights->flight_report }} </td>
                             <td>
-                                <a title="Delete" href="{{ route('delete.final.state', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
+                                <a title="Delete" id="delete" href="{{ route('delete.final.state', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
                           </tr>
                         @endforeach

@@ -201,7 +201,42 @@
             </div>
 
             @php
-                $test_m_count_mofa_one = App\Models\Mofa::where('status', 1)->count();
+                $test_m_count_visa_one = App\Models\Mofa::where('status', 1)->count();
+                $test_m_count_trancer_active = App\Models\TranCerti::count();
+
+
+
+                $test_medical_pending_count_trancer = $test_m_count_visa_one - $test_m_count_trancer_active;
+
+                $tranvisa = 0;
+                if($test_m_count_visa_one == $test_m_count_trancer_active){
+                    $tranvisa = 0;
+                }else {
+                    if($test_medical_pending_count_trancer > 0){
+                        $tranvisa = $test_medical_pending_count_trancer;
+                    }else {
+                        $tranvisa = 0;
+                    }
+                }
+            @endphp
+
+            <div class="col-xl-3 col-md-6 xl-50">
+                <div class="card o-hidden widget-cards">
+                    <div class="bg-primary card-body">
+                        <div class="media static-top-widget row">
+                            <div class="icons-widgets col-4">
+                                <div class="align-self-center text-center"><i data-feather="message-square" class="font-primary"></i></div>
+                            </div>
+                            <div class="media-body col-8"><span class="m-0">Training Certificate Create Pending</span>
+                                <h3 class="mb-0"><span class="counter">{{ $tranvisa }}</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @php
+                $test_m_count_mofa_one = App\Models\TranCerti::where('status', 1)->count();
                 $test_m_count_visa_active = App\Models\Visa::count();
 
 
@@ -238,42 +273,7 @@
             </div>
 
             @php
-                $test_m_count_visa_one = App\Models\Visa::where('status', 1)->count();
-                $test_m_count_trancer_active = App\Models\TranCerti::count();
-
-
-
-                $test_medical_pending_count_trancer = $test_m_count_visa_one - $test_m_count_trancer_active;
-
-                $tranvisa = 0;
-                if($test_m_count_visa_one == $test_m_count_trancer_active){
-                    $tranvisa = 0;
-                }else {
-                    if($test_medical_pending_count_trancer > 0){
-                        $tranvisa = $test_medical_pending_count_trancer;
-                    }else {
-                        $tranvisa = 0;
-                    }
-                }
-            @endphp
-
-            <div class="col-xl-3 col-md-6 xl-50">
-                <div class="card o-hidden widget-cards">
-                    <div class="bg-primary card-body">
-                        <div class="media static-top-widget row">
-                            <div class="icons-widgets col-4">
-                                <div class="align-self-center text-center"><i data-feather="message-square" class="font-primary"></i></div>
-                            </div>
-                            <div class="media-body col-8"><span class="m-0">Training Certificate Create Pending</span>
-                                <h3 class="mb-0"><span class="counter">{{ $tranvisa }}</span></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @php
-                $test_m_count_tran_one = App\Models\TranCerti::where('status', 1)->count();
+                $test_m_count_tran_one = App\Models\Visa::where('status', 1)->count();
                 $test_m_count_manpower_active = App\Models\ManPower::count();
 
 

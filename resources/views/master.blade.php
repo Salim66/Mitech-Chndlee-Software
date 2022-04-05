@@ -10,6 +10,9 @@
         <meta name="description" content="Multikart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Multikart admin template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="pixelstrap">
+        <!-- CSRF Token -->
+        <meta name="csrf_token" content="{{ csrf_token() }}">
+
         <link rel="icon" href="{{ asset('assets/') }}/images/dashboard/Fab-icon.png" type="image/x-icon">
         <link rel="shortcut icon" href="{{ asset('assets/') }}/images/dashboard/Fab-icon.png" type="image/x-icon">
         <title>Chandlee Software</title>
@@ -53,7 +56,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/') }}/css/custom/custom.css">
 
         <!-- Select2 css -->
-        <script src="{{ asset('assets/') }}//js/jquery-3.3.1.min.js"></script>
+        <script src="{{ asset('assets/') }}/js/jquery-3.3.1.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
 
@@ -144,6 +147,10 @@
 
     <!-- lazyload js-->
     <script src="{{ asset('assets/') }}/js/lazysizes.min.js"></script>
+
+    <!-- Moment Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.1/moment.min.js"></script>
+
 
     <!--script admin-->
     <script src="{{ asset('assets/') }}/js/admin-script.js"></script>

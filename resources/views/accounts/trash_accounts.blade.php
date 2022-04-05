@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="page-header-left">
-                        <h3>Agent List
+                        <h3>Account Trash List
                             <small>Multikart Admin panel</small>
                         </h3>
                     </div>
@@ -17,8 +17,8 @@
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
                         <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">Agents</li>
-                        <li class="breadcrumb-item active">Agent List</li>
+                        <li class="breadcrumb-item">Accounts</li>
+                        <li class="breadcrumb-item active">Account Trash List</li>
                     </ol>
                 </div>
             </div>
@@ -30,11 +30,11 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Agent Details</h5>
+                <h5>Account Details</h5>
             </div>
             <div class="btn-popup">
-                <a href="{{ route('trash.agent') }}" class="badge badge-danger float-left ml-4">Trash Agent List</a>
-                <a href="{{ route('add.agent') }}" class="btn btn-secondary float-right mr-4">Create Agent</a>
+                <a href="{{ route('accounts.list') }}" class="badge badge-primary float-left ml-4">Accounts List</a>
+                <a href="{{ route('add.account') }}" class="btn btn-secondary float-right mr-4">Create Account</a>
             </div>
             <div class="card-body">
 
@@ -43,10 +43,10 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> Name </th>
-                            <th> Phone </th>
-                            <th> Email </th>
-                            <th> Address </th>
+                            <th> Agent Name </th>
+                            <th> Amount </th>
+                            <th> Purpose </th>
+                            <th> Payment Receive Status </th>
                             <th> Action </th>
                           </tr>
                         </thead>
@@ -55,14 +55,14 @@
                         @foreach($all_data as $data)
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
-                            <td style="width: 20% !important"> {{ $data->name }} </td>
-                            <td> {{ $data->phone }} </td>
-                            <td> {{ $data->email }} </td>
-                            <td> {{ $data->address }} </td>
+                            <td style="width: 20% !important"> {{ $data->agents->name }} </td>
+                            <td> {{ $data->amount }} </td>
+                            <td> {{ $data->purpose }} </td>
+                            <td> {{ $data->payment_status }} </td>
                             <td style="width: 16%">
-                                <a title="Edit" href="{{ route('edit.agent', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
+                                <a title="Recover" href="{{ route('recover.account', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-trash'></i></a>
 
-                                <a title="Delete" href="{{ route('delete.agent', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
+                                <a title="Permanent Delete" id="delete" href="{{ route('permanent.delete.account', $data->id) }}" class="btn btn-sm btn-outline-primary"><i class='fa fa-times'></i></a>
                             </td>
                           </tr>
                         @endforeach

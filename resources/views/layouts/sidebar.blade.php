@@ -105,24 +105,6 @@
             </li>
             @endif
 
-            <!-- Count Visa -->
-            @php
-                $visa_new = App\Models\Visa::where('visa_date', null)->where('visa_report', null)->where('status', 0)->count();
-                $visa_pending = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->count();
-                $visa_done = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->count();
-            @endphp
-            <!-- !Count Visa -->
-
-            @if(Auth::user()->visa == 1)
-            <li><a class="sidebar-header" href="#"><i data-feather="box"></i><span>Visa</span><i class="fa fa-angle-right pull-right"></i></a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('visa.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $visa_new }}</span> )</li>
-                    <li><a href="{{ route('visa.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $visa_pending }}</span> )</li>
-                    <li><a href="{{ route('visa.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $visa_done }}</span> )</li>
-                </ul>
-            </li>
-            @endif
-
             <!-- Count Training Certificate -->
             @php
                 $tran_new = App\Models\TranCerti::where('tran_date', null)->where('tran_report', null)->where('status', 0)->count();
@@ -137,6 +119,24 @@
                     <li><a href="{{ route('tran.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $tran_new }}</span> )</li>
                     <li><a href="{{ route('tran.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $tran_pending }}</span> )</li>
                     <li><a href="{{ route('tran.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $tran_done }}</span> )</li>
+                </ul>
+            </li>
+            @endif
+
+            <!-- Count Visa -->
+            @php
+                $visa_new = App\Models\Visa::where('visa_date', null)->where('visa_report', null)->where('status', 0)->count();
+                $visa_pending = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->count();
+                $visa_done = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->count();
+            @endphp
+            <!-- !Count Visa -->
+
+            @if(Auth::user()->visa == 1)
+            <li><a class="sidebar-header" href="#"><i data-feather="box"></i><span>Visa</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('visa.list') }}"><i class="fa fa-circle"></i>New Data List</a> ( <span class="text-danger">{{ $visa_new }}</span> )</li>
+                    <li><a href="{{ route('visa.pending.list') }}"><i class="fa fa-circle"></i>Pending Data List</a> ( <span class="text-danger">{{ $visa_pending }}</span> )</li>
+                    <li><a href="{{ route('visa.done.list') }}"><i class="fa fa-circle"></i>Done Data List</a> ( <span class="text-danger">{{ $visa_done }}</span> )</li>
                 </ul>
             </li>
             @endif
@@ -182,7 +182,7 @@
             @endif
 
             @if(Auth::user()->accounts == 1)
-            <li><a class="sidebar-header" href="media.html"><i data-feather="plus"></i><span>Accounts</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('accounts.list') }}"><i data-feather="plus"></i><span>Accounts</span></a></li>
             @endif
 
             @if(Auth::user()->agent == 1)

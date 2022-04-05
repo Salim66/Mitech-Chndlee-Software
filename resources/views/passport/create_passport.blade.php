@@ -26,6 +26,11 @@
     </div>
     <!-- Container-fluid Ends-->
 
+    @php
+        $agents = App\Models\Agent::latest()->get();
+        // dd($agents);
+    @endphp
+
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
@@ -36,7 +41,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" role="tabpanel" aria-labelledby="account-tab">
                                 <form action="{{ route('store.passport') }}" method="POST">
                                     @csrf
 
@@ -91,11 +96,16 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Reference</label>
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Select Agent</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="reference" id="validationCustom0" type="text" required="">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="agent_id">
+                                                <option disabled selected>--Select--</option>
+                                                @foreach($agents as $agent)
+                                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        @error('reference')
+                                        @error('agent_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

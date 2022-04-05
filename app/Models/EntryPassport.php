@@ -50,4 +50,8 @@ class EntryPassport extends Model
         return $this->hasOne(Flight::class, 'man_id', 'id');
     }
 
+    public function agents(){
+        return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
+
 }
