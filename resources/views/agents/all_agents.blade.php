@@ -32,10 +32,12 @@
             <div class="card-header">
                 <h5>Agent Details</h5>
             </div>
+            @if(Auth::user()->agent_id == null)
             <div class="btn-popup">
                 <a href="{{ route('trash.agent') }}" class="badge badge-danger float-left ml-4">Trash Agent List</a>
                 <a href="{{ route('add.agent') }}" class="btn btn-secondary float-right mr-4">Create Agent</a>
             </div>
+            @endif
             <div class="card-body">
 
                 <div class="category-table order-table">
@@ -47,7 +49,9 @@
                             <th> Phone </th>
                             <th> Email </th>
                             <th> Address </th>
+                            @if(Auth::user()->agent_id == null)
                             <th> Action </th>
+                            @endif
                           </tr>
                         </thead>
                         <tbody>
@@ -59,11 +63,13 @@
                             <td> {{ $data->phone }} </td>
                             <td> {{ $data->email }} </td>
                             <td> {{ $data->address }} </td>
+                            @if(Auth::user()->agent_id == null)
                             <td style="width: 16%">
                                 <a title="Edit" href="{{ route('edit.agent', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.agent', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
+                            @endif
                           </tr>
                         @endforeach
 

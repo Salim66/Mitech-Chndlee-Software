@@ -33,8 +33,10 @@
                 <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
             <div class="btn-popup">
+                @if(Auth::user()->agent_id == null)
                 <a href="{{ route('trash.tMedical') }}" class="badge badge-danger float-left ml-4">Trash Test Medical List</a>
                 <a href="{{ route('add.tMedical') }}" class="btn btn-secondary float-right mr-4">Create Test Medical</a>
+                @endif
             </div>
             <div class="card-body">
 
@@ -47,7 +49,9 @@
                             <th> Medical Attand Date </th>
                             <th> Report Delivery Date </th>
                             <th> Medical Report Status </th>
+                            @if(Auth::user()->agent_id == null)
                             <th> Action </th>
+                            @endif
                           </tr>
                         </thead>
                         <tbody>
@@ -59,11 +63,13 @@
                             <td> {{ $data->medical_attend_date }} </td>
                             <td> {{ $data->report_delivery_date }} </td>
                             <td> {{ $data->medical_report_status }} </td>
+                            @if(Auth::user()->agent_id == null)
                             <td style="width: 16%">
                                 <a title="Edit" href="{{ route('edit.tMedical', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.tMedical', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
+                            @endif
                           </tr>
                         @endforeach
 

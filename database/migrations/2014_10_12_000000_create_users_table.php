@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->unsignedBigInteger('agent_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -31,8 +32,11 @@ return new class extends Migration
             $table->integer('traning_certificate')->nullable();
             $table->integer('man_power')->nullable();
             $table->integer('flight')->nullable();
+            $table->integer('final_state')->nullable();
             $table->integer('accounts')->nullable();
             $table->integer('agent')->nullable();
+            $table->integer('country')->nullable();
+            $table->integer('processing_media')->nullable();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();

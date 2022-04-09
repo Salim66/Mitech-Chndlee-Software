@@ -32,10 +32,12 @@
             <div class="card-header">
                 <h5>New Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
+            @if(Auth::user()->agent_id == null)
             <div class="btn-popup">
                 <a href="{{ route('trash.tran') }}" class="badge badge-danger float-left ml-4">Trash Trainint Certificate List</a>
                 <a href="{{ route('add.tran') }}" class="btn btn-secondary float-right mr-4">Create Trainint Certificate</a>
             </div>
+            @endif
             <div class="card-body">
 
                 <div class="category-table user-list order-table">
@@ -46,7 +48,9 @@
                             <th> Visa </th>
                             <th> Training Certificate Date </th>
                             <th> Training Certificate Report </th>
+                            @if(Auth::user()->agent_id == null)
                             <th> Action </th>
+                            @endif
                           </tr>
                         </thead>
                         <tbody>
@@ -57,11 +61,13 @@
                             <td style="width: 30% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }}</td>
                             <td> {{ $data->tran_date }} </td>
                             <td> {{ $data->tran_report }} </td>
+                            @if(Auth::user()->agent_id == null)
                             <td style="width: 16%">
                                 <a title="Edit" href="{{ route('edit.tran', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 
                                 <a title="Delete" href="{{ route('delete.tran', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
+                            @endif
                           </tr>
                         @endforeach
 

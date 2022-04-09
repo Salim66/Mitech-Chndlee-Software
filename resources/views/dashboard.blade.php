@@ -32,6 +32,7 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
+            @if(Auth::user()->entery_passport == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-warning card-body">
@@ -46,6 +47,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @php
                 $test_m_count_ep = App\Models\EntryPassport::where('status', 1)->count();
@@ -67,6 +69,7 @@
                 // dd($test_m_count_tm_active);
             @endphp
 
+            @if(Auth::user()->test_medical == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden  widget-cards">
                     <div class="bg-secondary card-body">
@@ -81,6 +84,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @php
                 $test_m_count_tm_one = App\Models\TestMedical::where('status', 1)->count();
@@ -102,6 +106,7 @@
                 // dd($test_m_count_fm_active);
             @endphp
 
+            @if(Auth::user()->final_medical == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-primary card-body">
@@ -116,6 +121,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @php
                 $test_m_count_fm_one = App\Models\FinalMedical::where('status', 1)->count();
@@ -139,6 +145,7 @@
                 // dd($pcfm);
             @endphp
 
+            @if(Auth::user()->police_clearance == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-danger card-body">
@@ -153,6 +160,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
         </div>
     </div>
@@ -185,6 +193,8 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
+
+            @if(Auth::user()->mofa == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-warning card-body">
@@ -199,6 +209,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @php
                 $test_m_count_visa_one = App\Models\Mofa::where('status', 1)->count();
@@ -220,6 +231,7 @@
                 }
             @endphp
 
+            @if(Auth::user()->traning_certificate == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-primary card-body">
@@ -234,6 +246,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @php
                 $test_m_count_mofa_one = App\Models\TranCerti::where('status', 1)->count();
@@ -257,6 +270,7 @@
                 // dd($visamofa);
             @endphp
 
+            @if(Auth::user()->visa == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden  widget-cards">
                     <div class="bg-secondary card-body">
@@ -271,6 +285,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @php
                 $test_m_count_tran_one = App\Models\Visa::where('status', 1)->count();
@@ -293,6 +308,7 @@
 
             @endphp
 
+            @if(Auth::user()->man_power == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-danger card-body">
@@ -307,6 +323,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
         </div>
     </div>
@@ -338,6 +355,8 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
+
+            @if(Auth::user()->flight == 1)
             <div class="col-xl-3 col-md-6 xl-50">
                 <div class="card o-hidden widget-cards">
                     <div class="bg-warning card-body">
@@ -352,6 +371,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
         </div>
     </div>

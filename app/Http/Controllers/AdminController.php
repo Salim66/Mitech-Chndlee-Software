@@ -6,15 +6,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
     /**
      * Admin Logout
      */
     public function logout() {
         Auth::logout();
 
-        return redirect()->route('login');
+        return redirect()->route( 'login' );
     }
 
     ///////////////// Users Methods //////////////////
@@ -22,76 +21,79 @@ class AdminController extends Controller
     /**
      * User list
      */
-    public function usersList(){
-        $all_data = User::all();
-        return view('users.all_users', [
-            'all_data' => $all_data
-        ]);
+    public function usersList() {
+        $all_data = User::with( 'agents' )->where( 'type', '!=', 1 )->get();
+        return view( 'users.all_users', [
+            'all_data' => $all_data,
+        ] );
     }
 
     /**
      * User Create Page
      */
-    public function usersCreate(){
-        return view('users.create_users');
+    public function usersCreate() {
+        return view( 'users.create_users' );
     }
 
     /**
      * User Store
      */
-    public function usersStore(Request $request){
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
+    public function usersStore( Request $request ) {
+        $this->validate( $request, [
+            'email'    => 'required',
             'password' => 'required|confirmed',
-        ]);
+        ] );
 
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => password_hash($request->password, PASSWORD_DEFAULT),
-            'type' => 2,
-            'users' => $request->users,
-            'entery_passport' => $request->entery_passport,
-            'test_medical' => $request->test_medical,
-            'final_medical' => $request->final_medical,
-            'police_clearance' => $request->police_clearance,
-            'mofa' => $request->mofa,
-            'visa' => $request->visa,
+        User::create( [
+            'name'                => $request->name,
+            'agent_id'            => $request->agent_id,
+            'email'               => $request->email,
+            'password'            => password_hash( $request->password, PASSWORD_DEFAULT ),
+            'type'                => 2,
+            'users'               => $request->users,
+            'entery_passport'     => $request->entery_passport,
+            'test_medical'        => $request->test_medical,
+            'final_medical'       => $request->final_medical,
+            'police_clearance'    => $request->police_clearance,
+            'mofa'                => $request->mofa,
+            'visa'                => $request->visa,
             'traning_certificate' => $request->traning_certificate,
-            'man_power' => $request->man_power,
-            'flight' => $request->flight,
-            'accounts' => $request->accounts,
-            'agent' => $request->agent,
-        ]);
+            'man_power'           => $request->man_power,
+            'flight'              => $request->flight,
+            'final_state'         => $request->final_state,
+            'accounts'            => $request->accounts,
+            'agent'               => $request->agent,
+            'country'             => $request->country,
+            'processing_media'    => $request->processing_media,
+        ] );
 
         $notification = [
-            'message' => 'User added successfully',
+            'message'    => 'User added successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('users.list')->with($notification);
+        return redirect()->route( 'users.list' )->with( $notification );
     }
 
     /**
      * Edit User Page
      */
-    public function usersEdit($id){
-        $data = User::findOrFail($id);
-        return view('users.edit_users', [
-            'data' => $data
-        ]);
+    public function usersEdit( $id ) {
+        $data = User::findOrFail( $id );
+        return view( 'users.edit_users', [
+            'data' => $data,
+        ] );
     }
 
     /**
      * Update User
      */
-    public function usersUpdate(Request $request, $id){
+    public function usersUpdate( Request $request, $id ) {
 
-        $data = User::findOrFail($id);
+        $data = User::findOrFail( $id );
 
         $data->name = $request->name;
+        $data->agent_id = $request->agent_id;
         $data->email = $request->email;
         $data->type = 2;
         $data->users = $request->users;
@@ -104,115 +106,116 @@ class AdminController extends Controller
         $data->traning_certificate = $request->traning_certificate;
         $data->man_power = $request->man_power;
         $data->flight = $request->flight;
+        $data->final_state = $request->final_state;
         $data->accounts = $request->accounts;
         $data->agent = $request->agent;
+        $data->country = $request->country;
+        $data->processing_media = $request->processing_media;
         $data->update();
 
         $notification = [
-            'message' => 'User updated successfully',
+            'message'    => 'User updated successfully',
             'alert-type' => 'info',
         ];
 
-        return redirect()->route('users.list')->with($notification);
+        return redirect()->route( 'users.list' )->with( $notification );
 
     }
 
     /**
      * User Delete
      */
-    public function usersDelete($id){
-        User::findOrFail($id)->delete();
+    public function usersDelete( $id ) {
+        User::findOrFail( $id )->delete();
 
         $notification = [
-            'message' => 'User trash successfully',
+            'message'    => 'User trash successfully',
             'alert-type' => 'warning',
         ];
 
-        return redirect()->route('users.list')->with($notification);
+        return redirect()->route( 'users.list' )->with( $notification );
     }
 
     /**
      * User Trash list
      */
-    public function usersTrashList(){
-        $all_data = User::onlyTrashed()->latest()->get();
-        return view('users.trash_users', [
-            'all_data' => $all_data
-        ]);
+    public function usersTrashList() {
+        $all_data = User::with( 'agents' )->onlyTrashed()->latest()->get();
+        return view( 'users.trash_users', [
+            'all_data' => $all_data,
+        ] );
     }
 
     /**
      * User Trash Recover
      */
-    public function usersRecover($id){
-        User::withTrashed()->find($id)->restore();
+    public function usersRecover( $id ) {
+        User::withTrashed()->find( $id )->restore();
         $notification = [
-            'message' => 'User recover successfully',
+            'message'    => 'User recover successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('users.list')->with($notification);
+        return redirect()->route( 'users.list' )->with( $notification );
     }
 
     /**
      * User Permanent Delete
      */
-    public function usersPermanentDelete($id){
+    public function usersPermanentDelete( $id ) {
 
-        User::onlyTrashed()->find($id)->forceDelete();
+        User::onlyTrashed()->find( $id )->forceDelete();
 
         $notification = [
-            'message' => 'User permanent deleted successfully',
+            'message'    => 'User permanent deleted successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('users.list')->with($notification);
+        return redirect()->route( 'users.list' )->with( $notification );
 
     }
-
-
 
     /////////////////// User Profile ///////////////////
 
     /**
      * User Profile Page
      */
-    public function userProfile(){
-        $data = User::findOrFail(Auth::user()->id);
-        return view('users.profile.profile', [
-            'data' => $data
-        ]);
+    public function userProfile() {
+        $data = User::findOrFail( Auth::user()->id );
+        return view( 'users.profile.profile', [
+            'data' => $data,
+        ] );
     }
 
     /**
      * User Profile Edit
      */
-    public function userProfileEdit($id){
-        $data = User::findOrFail($id);
-        return view('users.profile.profile_edit', [
-            'data' => $data
-        ]);
+    public function userProfileEdit( $id ) {
+        $data = User::findOrFail( $id );
+        return view( 'users.profile.profile_edit', [
+            'data' => $data,
+        ] );
     }
 
     /**
      * User Update Profile
      */
-    public function usersUpdateProfile(Request $request, $id){
-        $data = User::findOrFail($id);
+    public function usersUpdateProfile( Request $request, $id ) {
+        $data = User::findOrFail( $id );
 
         $user_image = [];
-        if($request->hasFile('profile_photo_path')){
-            $image = $request->file('profile_photo_path');
-            $unique_image = md5(time().rand()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('media/users/'), $unique_image);
+        if ( $request->hasFile( 'profile_photo_path' ) ) {
+            $image = $request->file( 'profile_photo_path' );
+            $unique_image = md5( time() . rand() ) . '.' . $image->getClientOriginalExtension();
+            $image->move( public_path( 'media/users/' ), $unique_image );
 
-            $user_image = 'media/users/'.$unique_image;
+            $user_image = 'media/users/' . $unique_image;
 
-            if (file_exists('media/users/' . $data->profile_photo_path) && !empty($data->profile_photo_path)) {
-                unlink('media/users/' . $users);
+            if ( file_exists( 'media/users/' . $data->profile_photo_path ) && !empty( $data->profile_photo_path ) ) {
+                unlink( 'media/users/' . $users );
             }
 
-        }else {
+        } else {
             $user_image = $data->profile_photo_path;
         }
 
@@ -224,62 +227,61 @@ class AdminController extends Controller
         $data->update();
 
         $notification = [
-            'message' => 'User profile updated successfully',
+            'message'    => 'User profile updated successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('user.profile')->with($notification);
+        return redirect()->route( 'user.profile' )->with( $notification );
 
     }
 
     /**
      * Change Password
      */
-    public function changePassword(){
-        return view('users.password.change_password');
+    public function changePassword() {
+        return view( 'users.password.change_password' );
     }
 
     /**
      * Update password
      */
-    public function updatePassword(Request $request, $id){
+    public function updatePassword( Request $request, $id ) {
         // find user has or not
-        $data = User::where('id', $id)->first();
+        $data = User::where( 'id', $id )->first();
 
         // user data successfully get or not
-        if($data != null){
+        if ( $data != null ) {
             // check password match or not
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->old_password])) {
+            if ( Auth::attempt( ['email' => $request->email, 'password' => $request->old_password] ) ) {
 
-                $data->password = password_hash($request->new_password, PASSWORD_DEFAULT);
+                $data->password = password_hash( $request->new_password, PASSWORD_DEFAULT );
                 $data->update();
 
                 $notification = [
-                    'message' => 'Password updated successfully',
+                    'message'    => 'Password updated successfully',
                     'alert-type' => 'success',
                 ];
 
-                return redirect()->route('user.profile')->with($notification);
+                return redirect()->route( 'user.profile' )->with( $notification );
 
             } else {
 
-
                 $notification = [
-                    'message' => 'Sorry! your password and email do not match our record.',
+                    'message'    => 'Sorry! your password and email do not match our record.',
                     'alert-type' => 'success',
                 ];
 
-                return redirect()->back()->with($notification);
+                return redirect()->back()->with( $notification );
 
             }
-        }else {
+        } else {
 
             $notification = [
-                'message' => 'Something is wrong! plase try again!',
+                'message'    => 'Something is wrong! plase try again!',
                 'alert-type' => 'success',
             ];
 
-            return redirect()->back()->with($notification);
+            return redirect()->back()->with( $notification );
 
         }
     }

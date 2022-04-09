@@ -53,7 +53,7 @@
                         @foreach($all_data as $data)
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
-                            <td style="width: 25% !important"> {{ $data->name }} </td>
+                            <td style="width: 25% !important"> {{ $data->name ? $data->name : $data->agents->name }} </td>
                             <td>
                                 @if($data->users == 1)
                                 <span class="badge badge-primary">Users</span>
@@ -105,6 +105,11 @@
                                 @else
                                 @endif
 
+                                @if($data->final_state == 1)
+                                <span class="badge badge-danger">Final State</span>
+                                @else
+                                @endif
+
                                 @if($data->accounts == 1)
                                 <span class="badge badge-primary">Accounts</span>
                                 @else
@@ -112,6 +117,16 @@
 
                                 @if($data->agent == 1)
                                 <span class="badge badge-secondary">Agent</span>
+                                @else
+                                @endif
+
+                                @if($data->country == 1)
+                                <span class="badge badge-success">Country</span>
+                                @else
+                                @endif
+
+                                @if($data->processing_media == 1)
+                                <span class="badge badge-info">Processing Media</span>
                                 @else
                                 @endif
                             </td>

@@ -26,6 +26,11 @@
     </div>
     <!-- Container-fluid Ends-->
 
+    @php
+        $agents = App\Models\Agent::latest()->get();
+        // dd($agents);
+    @endphp
+
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
@@ -36,11 +41,11 @@
                     </div>
                     <div class="card-body">
                         <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active show" id="account-tab" data-bs-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="true" data-original-title="" title="">Account</a></li>
+                            <li class="nav-item"><a class="nav-link active show" id="account-tab" data-bs-toggle="tab" href="#accounts" role="tab" aria-controls="account" aria-selected="true" data-original-title="" title="">Account</a></li>
                             <li class="nav-item"><a class="nav-link" id="permission-tabs" data-bs-toggle="tab" href="#permission" role="tab" aria-controls="permission" aria-selected="false" data-original-title="" title="">Permission</a></li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" id="accounts" role="tabpanel" aria-labelledby="account-tab">
                                 <form class="needs-validation user-add" novalidate="" action="{{ route('update.user', $data->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
@@ -49,9 +54,24 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Name</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <input class="form-control" name="name" id="validationCustom0" type="text" required="" value="{{ $data->name }}">
+                                            <input class="form-control" name="name" id="validationCustom0" type="text" value="{{ $data->name }}">
                                         </div>
                                         @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <Strong>Or </Strong><span class="text-danger">(Create an Agent Account, only permission for view)</span>
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Select Agent</label>
+                                        <div class="col-xl-8 col-md-7">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="agent_id">
+                                                <option disabled selected>--Select--</option>
+                                                @foreach($agents as $agent)
+                                                <option value="{{ $agent->id }}" {{ ($data->agent_id == $agent->id) ? 'selected' : '' }}>{{ $agent->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('agent_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -241,6 +261,23 @@
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="col-xl-3 col-sm-4">
+                                                    <label class="mb-0 sm-label-radio">Final State</label>
+                                                </div>
+                                                <div class="col-xl-9 col-sm-8">
+                                                    <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated pb-0">
+                                                        <label class="d-block mb-0 mr-3" for="edo-ani7">
+                                                            <input class="radio_animated" id="edo-ani7" type="radio" name="final_state" @if($data->final_state == 1) checked="" @endif value="1">
+                                                            Allow
+                                                        </label>
+                                                        <label class="d-block mb-0" for="edo-ani8">
+                                                            <input class="radio_animated" id="edo-ani8" type="radio" name="final_state" value="0" @if($data->final_state == 0) checked="" @endif>
+                                                            Deny
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-xl-3 col-sm-4">
                                                     <label class="mb-0 sm-label-radio">Accounts</label>
                                                 </div>
                                                 <div class="col-xl-9 col-sm-8">
@@ -268,6 +305,40 @@
                                                         </label>
                                                         <label class="d-block mb-0" for="edo-ani8">
                                                             <input class="radio_animated" id="edo-ani8" type="radio" name="agent" value="0" @if($data->agent == 0) checked="" @endif >
+                                                            Deny
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label class="mb-0 sm-label-radio">Country</label>
+                                                </div>
+                                                <div class="col-xl-9 col-sm-8">
+                                                    <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated pb-0">
+                                                        <label class="d-block mb-0 mr-3" for="edo-ani7">
+                                                            <input class="radio_animated" id="edo-ani7" type="radio" name="country" @if($data->country == 1) checked="" @endif  value="1">
+                                                            Allow
+                                                        </label>
+                                                        <label class="d-block mb-0" for="edo-ani8">
+                                                            <input class="radio_animated" id="edo-ani8" type="radio" name="country" value="0" @if($data->country == 0) checked="" @endif >
+                                                            Deny
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label class="mb-0 sm-label-radio">Processing Media</label>
+                                                </div>
+                                                <div class="col-xl-9 col-sm-8">
+                                                    <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated pb-0">
+                                                        <label class="d-block mb-0 mr-3" for="edo-ani7">
+                                                            <input class="radio_animated" id="edo-ani7" type="radio" name="processing_media" @if($data->processing_media == 1) checked="" @endif  value="1">
+                                                            Allow
+                                                        </label>
+                                                        <label class="d-block mb-0" for="edo-ani8">
+                                                            <input class="radio_animated" id="edo-ani8" type="radio" name="processing_media" value="0" @if($data->processing_media == 0) checked="" @endif >
                                                             Deny
                                                         </label>
                                                     </div>

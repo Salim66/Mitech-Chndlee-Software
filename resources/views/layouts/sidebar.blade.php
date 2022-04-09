@@ -177,8 +177,8 @@
             </li>
             @endif
 
-            @if(Auth::user()->flight == 1)
-            <li><a class="sidebar-header" href="{{ route('final.state.list') }}"><i data-feather="clipboard"></i><span>Final State</span></a></li>
+            @if(Auth::user()->final_state == 1)
+            <li><a class="sidebar-header" href="{{ route('final.state.list') }}"><i class="fa fa-hourglass-end" aria-hidden="true"></i><span>Final State</span></a></li>
             @endif
 
             @if(Auth::user()->accounts == 1)
@@ -187,6 +187,14 @@
 
             @if(Auth::user()->agent == 1)
             <li><a class="sidebar-header" href="{{ route('agents.list') }}"><i data-feather="user"></i><span>Agent</span></a></li>
+            @endif
+
+            @if(Auth::user()->country == 1)
+            <li><a class="sidebar-header" href="{{ route('agents.list') }}"><i class="fa fa-flag" aria-hidden="true"></i><span>Country</span></a></li>
+            @endif
+
+            @if(Auth::user()->processing_media == 1)
+            <li><a class="sidebar-header" href="{{ route('agents.list') }}"><i class="fa fa-heartbeat" aria-hidden="true"></i><span>Processing Media</span></a></li>
             @endif
 
         </ul>

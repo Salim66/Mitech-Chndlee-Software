@@ -56,4 +56,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function agents(){
+        return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
 }

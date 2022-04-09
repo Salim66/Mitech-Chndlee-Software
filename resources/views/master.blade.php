@@ -116,6 +116,9 @@
     <script src="{{ asset('assets/') }}/js/counter/jquery.counterup.min.js"></script>
     <script src="{{ asset('assets/') }}/js/counter/counter-custom.js"></script>
 
+    <!-- FontAwesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- DataTable -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jqc-1.12.4/dt-1.11.5/b-2.2.2/r-2.2.9/rg-1.1.4/sc-2.0.5/sl-1.3.4/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>

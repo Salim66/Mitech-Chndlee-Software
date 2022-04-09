@@ -53,7 +53,7 @@
                         @foreach($all_data as $data)
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
-                            <td style="width: 25% !important"> {{ $data->name }} </td>
+                            <td style="width: 25% !important"> {{ $data->name ? $data->name : $data->agents->name }} </td>
                             <td>
                                 @if($data->users == 1)
                                 <span class="badge badge-primary">Users</span>

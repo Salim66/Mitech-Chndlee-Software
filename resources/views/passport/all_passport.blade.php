@@ -33,8 +33,10 @@
                 <h5>Entry Passport Details</h5>
             </div>
             <div class="btn-popup">
+                @if(Auth::user()->agent_id == null)
                 <a href="{{ route('trash.passport') }}" class="badge badge-danger float-left ml-4">Trash Entry Passport List</a>
                 <a href="{{ route('add.passport') }}" class="btn btn-secondary float-right mr-4">Create Entry Passport</a>
+                @endif
             </div>
             <div class="card-body">
 
@@ -49,7 +51,9 @@
                             <th> Mobile No. </th>
                             <th> Visa Type </th>
                             <th> Agent Name </th>
+                            @if(Auth::user()->agent_id == null)
                             <th> Action </th>
+                            @endif
                           </tr>
                         </thead>
                         <tbody>
@@ -58,11 +62,12 @@
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
                             <td> {{ $data->date }} </td>
-                            <td> {{ $data->name }} </td>
+                            <td> {{ $data->name }}  </td>
                             <td> {{ $data->passport_no }} </td>
                             <td> {{ $data->mobile_no }} </td>
                             <td> {{ $data->visa_type }} </td>
                             <td> {{ $data->agents->name }} </td>
+                            @if(Auth::user()->agent_id == null)
                             <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.passport', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 
@@ -70,6 +75,7 @@
 
                                 <a title="Delete" href="{{ route('delete.passport', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
+                            @endif
                           </tr>
                         @endforeach
 

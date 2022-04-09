@@ -32,9 +32,11 @@
             <div class="card-header">
                 <h5>Done Data Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
+            @if(Auth::user()->agent_id == null)
             <div class="btn-popup">
                 <a href="{{ route('trash.mofa') }}" class="badge badge-danger float-left ml-4">Trash Mofa List</a>
             </div>
+            @endif
             <div class="card-body">
 
                 <div class="category-table user-list order-table">
@@ -45,7 +47,9 @@
                             <th> Police Clierance </th>
                             <th> Mofa Date </th>
                             <th> Mofa Report </th>
+                            @if(Auth::user()->agent_id == null)
                             <th> Action </th>
+                            @endif
                           </tr>
                         </thead>
                         <tbody>
@@ -56,6 +60,7 @@
                             <td style="width: 30% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }}</td>
                             <td> {{ $data->mofa_date }} </td>
                             <td> {{ $data->mofa_report }} </td>
+                            @if(Auth::user()->agent_id == null)
                             <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.mofa', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
 
@@ -63,6 +68,7 @@
 
                                 <a title="Delete" href="{{ route('delete.mofa', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
                             </td>
+                            @endif
                           </tr>
                         @endforeach
 
