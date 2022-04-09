@@ -190,11 +190,11 @@
             @endif
 
             @if(Auth::user()->country == 1)
-            <li><a class="sidebar-header" href="{{ route('agents.list') }}"><i class="fa fa-flag" aria-hidden="true"></i><span>Country</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('countries.list') }}"><i class="fa fa-flag" aria-hidden="true"></i><span>Country</span></a></li>
             @endif
 
             @if(Auth::user()->processing_media == 1)
-            <li><a class="sidebar-header" href="{{ route('agents.list') }}"><i class="fa fa-heartbeat" aria-hidden="true"></i><span>Processing Media</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('processing.list') }}"><i class="fa fa-heartbeat" aria-hidden="true"></i><span>Processing Media</span></a></li>
             @endif
 
         </ul>

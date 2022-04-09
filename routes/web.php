@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MofaController;
 use App\Http\Controllers\VisaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ManPowerController;
 use App\Http\Controllers\TranCertiController;
+use App\Http\Controllers\FinalStateController;
+use App\Http\Controllers\ProcessingController;
 use App\Http\Controllers\TestMedicalController;
 use App\Http\Controllers\FinalMedicalController;
 use App\Http\Controllers\EntryPassportController;
-use App\Http\Controllers\FinalStateController;
 use App\Http\Controllers\PoliceClearanceController;
 
 /*
@@ -240,6 +242,34 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trash-list', [AccountController::class, 'accountsTrashList'])->name('trash.account');
         Route::get('/revocer/{id}', [AccountController::class, 'accountsRecover'])->name('recover.account');
         Route::get('/permanent-delete/{id}', [AccountController::class, 'accountsPermanentDelete'])->name('permanent.delete.account');
+    });
+
+
+    // Country List Routes
+    Route::prefix('countries')->group(function () {
+        Route::get('/list', [CountryController::class, 'countriesList'])->name('countries.list');
+        Route::get('/create', [CountryController::class, 'countriesCreate'])->name('add.country');
+        Route::post('/store', [CountryController::class, 'countriesStore'])->name('store.country');
+        Route::get('/edit/{id}', [CountryController::class, 'countriesEdit'])->name('edit.country');
+        Route::patch('/update/{id}', [CountryController::class, 'countriesUpdate'])->name('update.country');
+        Route::get('/delete/{id}', [CountryController::class, 'countriesDelete'])->name('delete.country');
+        Route::get('/trash-list', [CountryController::class, 'countriesTrashList'])->name('trash.country');
+        Route::get('/revocer/{id}', [CountryController::class, 'countriesRecover'])->name('recover.country');
+        Route::get('/permanent-delete/{id}', [CountryController::class, 'countriesPermanentDelete'])->name('permanent.delete.country');
+    });
+
+
+    // Processing Media List Routes
+    Route::prefix('processing')->group(function () {
+        Route::get('/list', [ProcessingController::class, 'processingList'])->name('processing.list');
+        Route::get('/create', [ProcessingController::class, 'processingCreate'])->name('add.processing');
+        Route::post('/store', [ProcessingController::class, 'processingStore'])->name('store.processing');
+        Route::get('/edit/{id}', [ProcessingController::class, 'processingEdit'])->name('edit.processing');
+        Route::patch('/update/{id}', [ProcessingController::class, 'processingUpdate'])->name('update.processing');
+        Route::get('/delete/{id}', [ProcessingController::class, 'processingDelete'])->name('delete.processing');
+        Route::get('/trash-list', [ProcessingController::class, 'processingTrashList'])->name('trash.processing');
+        Route::get('/revocer/{id}', [ProcessingController::class, 'processingRecover'])->name('recover.processing');
+        Route::get('/permanent-delete/{id}', [ProcessingController::class, 'processingPermanentDelete'])->name('permanent.delete.processing');
     });
 
 
