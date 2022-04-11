@@ -28,6 +28,8 @@
 
     @php
         $agents = App\Models\Agent::latest()->get();
+        $countries = App\Models\Country::latest()->get();
+        $processing = App\Models\Processing::latest()->get();
         // dd($agents);
     @endphp
 
@@ -107,6 +109,36 @@
                                             </select>
                                         </div>
                                         @error('agent_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Select Country Name</label>
+                                        <div class="col-xl-8 col-md-7">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="country_id">
+                                                <option disabled selected>--Select--</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{ $country->id }}" {{ ($data->country_id == $country->id) ? 'selected' : '' }}>{{ $country->country_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('country_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Select Processing Media Name</label>
+                                        <div class="col-xl-8 col-md-7">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="processing_id">
+                                                <option disabled selected>--Select--</option>
+                                                @foreach($processing as $proce)
+                                                <option value="{{ $proce->id }}" {{ ($data->processing_id == $proce->id) ? 'selected' : '' }}>{{ $proce->processing_media_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('processing_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

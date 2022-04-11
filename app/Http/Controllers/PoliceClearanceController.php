@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PoliceClearance;
+use Illuminate\Support\Facades\Auth;
 
 class PoliceClearanceController extends Controller
 {
@@ -11,7 +12,7 @@ class PoliceClearanceController extends Controller
      * Police Clearance list
      */
     public function pClearanceList(){
-        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', null)->where('police_clearance_report', null)->where('status', 0)->latest()->get();
+        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', null)->where('police_clearance_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('police-clearance.all_pClearance', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class PoliceClearanceController extends Controller
      * Police Clearance Pending list
      */
     public function pClearancePendingList(){
-        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', '!=', null)->where('police_clearance_report', null)->where('status', 0)->latest()->get();
+        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', '!=', null)->where('police_clearance_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('police-clearance.all_pending_pClearance', [
             'all_data' => $all_data
@@ -33,7 +34,7 @@ class PoliceClearanceController extends Controller
      * Police Clearance Done list
      */
     public function pClearanceDoneList(){
-        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', '!=', null)->where('police_clearance_report', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = PoliceClearance::with('entry')->where('police_clearance_date', '!=', null)->where('police_clearance_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('police-clearance.all_done_pClearance', [
             'all_data' => $all_data
@@ -57,6 +58,7 @@ class PoliceClearanceController extends Controller
 
         // return $request->all();
         PoliceClearance::create([
+            'user_id' => Auth::user()->id,
             'final_medical_id' => $request->final_medical_id,
             'police_clearance_date' => $request->police_clearance_date,
             'police_clearance_report' => $request->police_clearance_report,
@@ -87,6 +89,7 @@ class PoliceClearanceController extends Controller
 
         $data = PoliceClearance::findOrFail($id);
 
+        $data->user_id = Auth::user()->id;
         $data->final_medical_id = $request->final_medical_id;
         $data->police_clearance_date = $request->police_clearance_date;
         $data->police_clearance_report = $request->police_clearance_report;
@@ -138,7 +141,7 @@ class PoliceClearanceController extends Controller
      * Police Clearance Trash list
      */
     public function pClearanceTrashList(){
-        $all_data = PoliceClearance::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = PoliceClearance::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('police-clearance.trash_pClearance', [
             'all_data' => $all_data
         ]);

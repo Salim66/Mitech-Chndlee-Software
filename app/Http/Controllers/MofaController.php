@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mofa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MofaController extends Controller
 {
@@ -11,7 +12,7 @@ class MofaController extends Controller
      * Mofa list
      */
     public function mofaList(){
-        $all_data = Mofa::with('entry')->where('mofa_date', null)->where('mofa_report', null)->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', null)->where('mofa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_mofa', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class MofaController extends Controller
      * Mofa Pending list
      */
     public function mofaPendingList(){
-        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', null)->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_pending_mofa', [
             'all_data' => $all_data
@@ -33,7 +34,7 @@ class MofaController extends Controller
      * Mofa Done list
      */
     public function mofaDoneList(){
-        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_done_mofa', [
             'all_data' => $all_data
@@ -57,6 +58,7 @@ class MofaController extends Controller
 
         // return $request->all();
         Mofa::create([
+            'user_id' => Auth::user()->id,
             'police_clearance_id' => $request->police_clearance_id,
             'mofa_date' => $request->mofa_date,
             'mofa_report' => $request->mofa_report,
@@ -87,6 +89,7 @@ class MofaController extends Controller
 
         $data = Mofa::findOrFail($id);
 
+        $data->user_id = Auth::user()->id;
         $data->police_clearance_id = $request->police_clearance_id;
         $data->mofa_date = $request->mofa_date;
         $data->mofa_report = $request->mofa_report;
@@ -138,7 +141,7 @@ class MofaController extends Controller
      * Mofa Trash list
      */
     public function mofaTrashList(){
-        $all_data = Mofa::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = Mofa::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('mofa.trash_mofa', [
             'all_data' => $all_data
         ]);

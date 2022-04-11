@@ -48,7 +48,9 @@
                             <th> Passport No. </th>
                             <th> Mobile No. </th>
                             <th> Visa Type </th>
-                            <th> Reference </th>
+                            <th> Agent Name </th>
+                            <th> Country Name </th>
+                            <th> P.Media Name </th>
                             <th> Action </th>
                           </tr>
                         </thead>
@@ -62,7 +64,9 @@
                             <td> {{ $data->passport_no }} </td>
                             <td> {{ $data->mobile_no }} </td>
                             <td> {{ $data->visa_type }} </td>
-                            <td> {{ $data->reference }} </td>
+                            <td> {{ $data->agents->name }} </td>
+                            <td> {{ $data->countries->country_name }} </td>
+                            <td> {{ $data->processings->processing_media_name }} </td>
                             <td style="width: 16%">
                                 <a title="Recover" href="{{ route('recover.passport', $data->id) }}" class="btn btn-outline-success btn-sm"><i class='fa fa-trash'></i></a>
 

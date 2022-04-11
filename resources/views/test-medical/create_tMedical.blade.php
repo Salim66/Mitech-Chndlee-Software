@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $entry_passport = App\Models\EntryPassport::where('status', 1)->latest()->get();
+        $entry_passport = App\Models\EntryPassport::where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
         $test_medical = App\Models\TestMedical::all();
         $select_test_medical = [];
         foreach ($test_medical as $test){

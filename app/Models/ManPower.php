@@ -15,6 +15,6 @@ class ManPower extends Model
     protected $guarded = [];
 
     public function entry(){
-        return $this->belongsTo(EntryPassport::class, 'tran_id');
+        return $this->belongsTo(EntryPassport::class, 'visa_id');
     }
 }

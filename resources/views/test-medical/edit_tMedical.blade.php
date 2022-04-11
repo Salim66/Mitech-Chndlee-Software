@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $entry_passport = App\Models\EntryPassport::where('status', 1)->latest()->get();
+        $entry_passport = App\Models\EntryPassport::where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
     @endphp
 
     <!-- Container-fluid starts-->

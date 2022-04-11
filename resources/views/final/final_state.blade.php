@@ -32,9 +32,6 @@
             <div class="card-header">
                 <h5>Final State Details</h5>&nbsp; <span class="badge badge-primary text-white d-inline-block">{{ count($all_data) }}</span>
             </div>
-            <div class="btn-popup">
-                <a href="{{ route('trash.passport') }}" class="badge badge-danger float-left ml-4">Trash Final State List</a>
-            </div>
             <div class="card-body">
 
                 <div class="category-table user-list order-table">
@@ -47,6 +44,8 @@
                             <th> Mob.No </th>
                             <th> Visa Ty </th>
                             <th> Ag.Name </th>
+                            <th> C.Name </th>
+                            <th> P.M.Name </th>
                             <th> T.M.S </th>
                             <th> F.M.S </th>
                             <th> P.C.S </th>
@@ -55,7 +54,6 @@
                             <th> V.R </th>
                             <th> M.P.R </th>
                             <th> F.R </th>
-                            <th> Action </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -68,6 +66,8 @@
                             <td> {{ $data->mobile_no }} </td>
                             <td> {{ $data->visa_type }} </td>
                             <td> {{ $data->agents->name }} </td>
+                            <td> {{ $data->countries->country_name }} </td>
+                            <td> {{ $data->processings->processing_media_name }} </td>
                             <td> {{ @$data->test_medicals->medical_report_status }} </td>
                             <td> {{ @$data->final_medicals->medical_report_status }} </td>
                             <td> {{ @$data->police_clearances->police_clearance_report }} </td>
@@ -76,9 +76,6 @@
                             <td> {{ @$data->visas->visa_report }} </td>
                             <td> {{ @$data->man_powers->man_report }} </td>
                             <td> {{ @$data->flights->flight_report }} </td>
-                            <td>
-                                <a title="Delete" id="delete" href="{{ route('delete.final.state', $data->id) }}" class="btn btn-sm btn-outline-danger"><i class='fa fa-trash'></i></a>
-                            </td>
                           </tr>
                         @endforeach
 

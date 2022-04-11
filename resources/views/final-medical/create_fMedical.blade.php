@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $test_medical = App\Models\TestMedical::with('entry')->where('status', 1)->latest()->get();
+        $test_medical = App\Models\TestMedical::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
         $final_medical = App\Models\FinalMedical::all();
         $select_final_medical = [];
         foreach ($final_medical as $final){

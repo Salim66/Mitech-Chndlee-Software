@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Models\Mofa;
+use App\Models\User;
 use App\Models\Flight;
+use App\Models\Country;
 use App\Models\ManPower;
+use App\Models\Processing;
 use App\Models\FinalMedical;
 use App\Models\PoliceClearance;
 use Illuminate\Database\Eloquent\Model;
@@ -34,16 +37,16 @@ class EntryPassport extends Model
         return $this->hasOne(Mofa::class, 'police_clearance_id', 'id');
     }
 
-    public function visas() {
-        return $this->hasOne(Visa::class, 'mofa_id', 'id');
+    public function tran_certis() {
+        return $this->hasOne(TranCerti::class, 'mofa_id', 'id');
     }
 
-    public function tran_certis() {
-        return $this->hasOne(TranCerti::class, 'visa_id', 'id');
+    public function visas() {
+        return $this->hasOne(Visa::class, 'tran_id', 'id');
     }
 
     public function man_powers() {
-        return $this->hasOne(ManPower::class, 'tran_id', 'id');
+        return $this->hasOne(ManPower::class, 'visa_id', 'id');
     }
 
     public function flights() {
@@ -52,6 +55,18 @@ class EntryPassport extends Model
 
     public function agents(){
         return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function countries(){
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    public function processings(){
+        return $this->belongsTo(Processing::class, 'processing_id', 'id');
     }
 
 }

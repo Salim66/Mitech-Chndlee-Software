@@ -26,7 +26,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $entry_count = App\Models\EntryPassport::where('status', 0)->count();
+        $entry_count = App\Models\EntryPassport::where('status', 0)->where('user_id', Auth::user()->id)->count();
     @endphp
 
     <!-- Container-fluid starts-->
@@ -50,7 +50,7 @@
             @endif
 
             @php
-                $test_m_count_ep = App\Models\EntryPassport::where('status', 1)->count();
+                $test_m_count_ep = App\Models\EntryPassport::where('status', 1)->where('user_id', Auth::user()->id)->count();
                 $test_m_count_tm_active = App\Models\TestMedical::count();
 
                 $test_medical_pending_count = $test_m_count_ep - $test_m_count_tm_active;
@@ -87,7 +87,7 @@
             @endif
 
             @php
-                $test_m_count_tm_one = App\Models\TestMedical::where('status', 1)->count();
+                $test_m_count_tm_one = App\Models\TestMedical::where('status', 1)->where('user_id', Auth::user()->id)->count();
                 $test_m_count_fm_active = App\Models\FinalMedical::count();
 
                 $test_medical_pending_count_fm = $test_m_count_tm_one - $test_m_count_fm_active;
@@ -124,7 +124,7 @@
             @endif
 
             @php
-                $test_m_count_fm_one = App\Models\FinalMedical::where('status', 1)->count();
+                $test_m_count_fm_one = App\Models\FinalMedical::where('status', 1)->where('user_id', Auth::user()->id)->count();
                 $test_m_count_pc_active = App\Models\PoliceClearance::count();
 
 
@@ -169,7 +169,7 @@
 
 
     @php
-        $test_m_count_pc_one = App\Models\PoliceClearance::where('status', 1)->count();
+        $test_m_count_pc_one = App\Models\PoliceClearance::where('status', 1)->where('user_id', Auth::user()->id)->count();
         $test_m_count_mofa_active = App\Models\Mofa::count();
 
 
@@ -212,7 +212,7 @@
             @endif
 
             @php
-                $test_m_count_visa_one = App\Models\Mofa::where('status', 1)->count();
+                $test_m_count_visa_one = App\Models\Mofa::where('status', 1)->where('user_id', Auth::user()->id)->count();
                 $test_m_count_trancer_active = App\Models\TranCerti::count();
 
 
@@ -249,10 +249,8 @@
             @endif
 
             @php
-                $test_m_count_mofa_one = App\Models\TranCerti::where('status', 1)->count();
+                $test_m_count_mofa_one = App\Models\TranCerti::where('status', 1)->where('user_id', Auth::user()->id)->count();
                 $test_m_count_visa_active = App\Models\Visa::count();
-
-
 
                 $test_medical_pending_count_visa = $test_m_count_mofa_one - $test_m_count_visa_active;
 
@@ -288,7 +286,7 @@
             @endif
 
             @php
-                $test_m_count_tran_one = App\Models\Visa::where('status', 1)->count();
+                $test_m_count_tran_one = App\Models\Visa::where('status', 1)->where('user_id', Auth::user()->id)->count();
                 $test_m_count_manpower_active = App\Models\ManPower::count();
 
 
@@ -332,7 +330,7 @@
 
 
     @php
-        $test_m_count_manpower_one = App\Models\ManPower::where('status', 1)->count();
+        $test_m_count_manpower_one = App\Models\ManPower::where('status', 1)->where('user_id', Auth::user()->id)->count();
         $test_m_count_flight_active = App\Models\Flight::count();
 
 

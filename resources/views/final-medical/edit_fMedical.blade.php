@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $test_medical = App\Models\TestMedical::with('entry')->where('status', 1)->latest()->get();
+        $test_medical = App\Models\TestMedical::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
     @endphp
 
     <!-- Container-fluid starts-->

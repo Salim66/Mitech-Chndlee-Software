@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('mofas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('police_clearance_id');
             $table->foreign('police_clearance_id')->references('id')->on('entry_passports')->onDelete('cascade');
             $table->string('mofa_date')->nullable();

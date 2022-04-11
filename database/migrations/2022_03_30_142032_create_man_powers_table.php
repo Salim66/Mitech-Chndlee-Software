@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('man_powers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tran_id');
-            $table->foreign('tran_id')->references('id')->on('entry_passports')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('visa_id');
+            $table->foreign('visa_id')->references('id')->on('entry_passports')->onDelete('cascade');
             $table->string('man_date')->nullable();
             $table->string('man_report')->nullable();
             $table->boolean('status')->default(0);

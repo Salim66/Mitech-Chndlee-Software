@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('police_clearances', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('final_medical_id');
             $table->foreign('final_medical_id')->references('id')->on('entry_passports')->onDelete('cascade');
             $table->string('police_clearance_date')->nullable();

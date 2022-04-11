@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TranCerti;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TranCertiController extends Controller
 {
@@ -11,7 +12,7 @@ class TranCertiController extends Controller
      * Training list
      */
     public function tranList(){
-        $all_data = TranCerti::with('entry')->where('tran_date', null)->where('tran_report', null)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', null)->where('tran_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_tran', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class TranCertiController extends Controller
      * Training Pending list
      */
     public function tranPendingList(){
-        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', null)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_pending_tran', [
             'all_data' => $all_data
@@ -33,7 +34,7 @@ class TranCertiController extends Controller
      * Training Done list
      */
     public function tranDoneList(){
-        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_done_tran', [
             'all_data' => $all_data
@@ -52,12 +53,13 @@ class TranCertiController extends Controller
      */
     public function tranStore(Request $request){
         $this->validate($request, [
-            'visa_id' => 'required'
+            'mofa_id' => 'required'
         ]);
 
         // return $request->all();
         TranCerti::create([
-            'visa_id' => $request->visa_id,
+            'user_id' => Auth::user()->id,
+            'mofa_id' => $request->mofa_id,
             'tran_date' => $request->tran_date,
             'tran_report' => $request->tran_report,
         ]);
@@ -87,7 +89,8 @@ class TranCertiController extends Controller
 
         $data = TranCerti::findOrFail($id);
 
-        $data->visa_id = $request->visa_id;
+        $data->user_id = Auth::user()->id;
+        $data->mofa_id = $request->mofa_id;
         $data->tran_date = $request->tran_date;
         $data->tran_report = $request->tran_report;
         $data->update();
@@ -138,7 +141,7 @@ class TranCertiController extends Controller
      * Training Trash list
      */
     public function tranTrashList(){
-        $all_data = TranCerti::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = TranCerti::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('tran.trash_tran', [
             'all_data' => $all_data
         ]);

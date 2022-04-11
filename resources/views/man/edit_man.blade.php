@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
         // dd($final_medical);
     @endphp
 
@@ -47,19 +47,19 @@
                                     @method('PATCH')
 
                                     <div class="form-group row">
-                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Training Certificate</label>
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Visa</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="tran_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="visa_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                <option value="{{ $fmediacl->entry->id }}" {{ ($data->tran_id == $fmediacl->entry->id) ? 'selected' : ''  }}>{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                <option value="{{ $fmediacl->entry->id }}" {{ ($data->visa_id == $fmediacl->entry->id) ? 'selected' : ''  }}>{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
 
 
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('tran_id')
+                                        @error('visa_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ManPower;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManPowerController extends Controller
 {
@@ -11,7 +12,7 @@ class ManPowerController extends Controller
      * Man list
      */
     public function manList(){
-        $all_data = ManPower::with('entry')->where('man_date', null)->where('man_report', null)->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', null)->where('man_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_man', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class ManPowerController extends Controller
      * Man Pending list
      */
     public function manPendingList(){
-        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', null)->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_pending_man', [
             'all_data' => $all_data
@@ -33,7 +34,7 @@ class ManPowerController extends Controller
      * Man Done list
      */
     public function manDoneList(){
-        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_done_man', [
             'all_data' => $all_data
@@ -52,12 +53,13 @@ class ManPowerController extends Controller
      */
     public function manStore(Request $request){
         $this->validate($request, [
-            'tran_id' => 'required'
+            'visa_id' => 'required'
         ]);
 
         // return $request->all();
         ManPower::create([
-            'tran_id' => $request->tran_id,
+            'user_id' => Auth::user()->id,
+            'visa_id' => $request->visa_id,
             'man_date' => $request->man_date,
             'man_report' => $request->man_report,
         ]);
@@ -87,7 +89,8 @@ class ManPowerController extends Controller
 
         $data = ManPower::findOrFail($id);
 
-        $data->tran_id = $request->tran_id;
+        $data->user_id = Auth::user()->id;
+        $data->visa_id = $request->visa_id;
         $data->man_date = $request->man_date;
         $data->man_report = $request->man_report;
         $data->update();
@@ -138,7 +141,7 @@ class ManPowerController extends Controller
      * Man Trash list
      */
     public function manTrashList(){
-        $all_data = ManPower::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = ManPower::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('man.trash_man', [
             'all_data' => $all_data
         ]);

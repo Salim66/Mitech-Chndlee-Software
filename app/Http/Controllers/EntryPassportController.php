@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EntryPassport;
+use Illuminate\Support\Facades\Auth;
 
 class EntryPassportController extends Controller
 {
@@ -11,7 +12,7 @@ class EntryPassportController extends Controller
      * Passport list
      */
     public function passportList(){
-        $all_data = EntryPassport::with('agents')->where('status', 0)->latest()->get();
+        $all_data = EntryPassport::with(['agents', 'countries', 'processings'])->where('status', 0)->where('user_id', Auth::user()->id)->latest()->get();
         return view('passport.all_passport', [
             'all_data' => $all_data
         ]);
@@ -31,7 +32,7 @@ class EntryPassportController extends Controller
         $this->validate($request, [
             'date' => 'required',
             'name' => 'required',
-            'passport_no' => 'required',
+            'passport_no' => 'required|unique:entry_passports,passport_no',
             'mobile_no' => 'required',
             'visa_type' => 'required',
             'agent_id' => 'required',
@@ -39,12 +40,15 @@ class EntryPassportController extends Controller
 
 
         EntryPassport::create([
+            'user_id' => Auth::user()->id,
             'date' => $request->date,
             'name' => $request->name,
             'passport_no' => $request->passport_no,
             'mobile_no' => $request->mobile_no,
             'visa_type' => $request->visa_type,
             'agent_id' => $request->agent_id,
+            'country_id' => $request->country_id,
+            'processing_id' => $request->processing_id,
         ]);
 
         $notification = [
@@ -72,12 +76,15 @@ class EntryPassportController extends Controller
 
         $data = EntryPassport::findOrFail($id);
 
+        $data->user_id = Auth::user()->id;
         $data->date = $request->date;
         $data->name = $request->name;
         $data->passport_no = $request->passport_no;
         $data->mobile_no = $request->mobile_no;
         $data->visa_type = $request->visa_type;
         $data->agent_id = $request->agent_id;
+        $data->country_id = $request->country_id;
+        $data->processing_id = $request->processing_id;
         $data->update();
 
         $notification = [
@@ -126,7 +133,7 @@ class EntryPassportController extends Controller
      * Password Trash list
      */
     public function passportTrashList(){
-        $all_data = EntryPassport::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = EntryPassport::with(['agents', 'countries', 'processings'])->onlyTrashed()->where('status', 0)->where('user_id', Auth::user()->id)->latest()->get();
         return view('passport.trash_passport', [
             'all_data' => $all_data
         ]);

@@ -27,14 +27,14 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
         $man_power = App\Models\ManPower::all();
         $power = [];
         foreach ($man_power as $man){
-            array_push($power, $man -> tran_id);
+            array_push($power, $man -> visa_id);
         }
         // dd($select_police_medical);
-        // dd($test_medical);
+        // dd($final_medical);
     @endphp
 
     <!-- Container-fluid starts-->
@@ -52,13 +52,13 @@
                                     @csrf
 
                                     <div class="form-group row">
-                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Training Certificate</label>
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Visa</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="tran_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="visa_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                @if(in_array($fmediacl->visa_id, $power))
+                                                @if(in_array($fmediacl->tran_id, $power))
 
                                                 @else
                                                 <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
@@ -67,7 +67,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('tran_id')
+                                        @error('visa_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

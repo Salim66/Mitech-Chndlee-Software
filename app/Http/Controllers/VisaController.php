@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VisaController extends Controller
 {
@@ -11,7 +12,7 @@ class VisaController extends Controller
      * Visa list
      */
     public function visaList(){
-        $all_data = Visa::with('entry')->where('visa_date', null)->where('visa_report', null)->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', null)->where('visa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_visa', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class VisaController extends Controller
      * Visa Pending list
      */
     public function visaPendingList(){
-        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_pending_visa', [
             'all_data' => $all_data
@@ -33,7 +34,7 @@ class VisaController extends Controller
      * Visa Done list
      */
     public function visaDoneList(){
-        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_done_visa', [
             'all_data' => $all_data
@@ -52,12 +53,13 @@ class VisaController extends Controller
      */
     public function visaStore(Request $request){
         $this->validate($request, [
-            'mofa_id' => 'required'
+            'tran_id' => 'required'
         ]);
 
         // return $request->all();
         Visa::create([
-            'mofa_id' => $request->mofa_id,
+            'user_id' => Auth::user()->id,
+            'tran_id' => $request->tran_id,
             'visa_date' => $request->visa_date,
             'visa_report' => $request->visa_report,
         ]);
@@ -87,7 +89,8 @@ class VisaController extends Controller
 
         $data = Visa::findOrFail($id);
 
-        $data->mofa_id = $request->mofa_id;
+        $data->user_id = Auth::user()->id;
+        $data->tran_id = $request->tran_id;
         $data->visa_date = $request->visa_date;
         $data->visa_report = $request->visa_report;
         $data->update();
@@ -138,7 +141,7 @@ class VisaController extends Controller
      * Visa Trash list
      */
     public function visaTrashList(){
-        $all_data = Visa::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = Visa::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('visa.trash_visa', [
             'all_data' => $all_data
         ]);

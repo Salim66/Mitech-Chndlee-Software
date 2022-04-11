@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FlightController extends Controller
 {
@@ -11,7 +12,7 @@ class FlightController extends Controller
      * Flight list
      */
     public function flightList(){
-        $all_data = Flight::with('entry')->where('flight_date', null)->where('flight_report', null)->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', null)->where('flight_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_flight', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class FlightController extends Controller
      * Flight Pending list
      */
     public function flightPendingList(){
-        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', null)->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_pending_flight', [
             'all_data' => $all_data
@@ -32,7 +33,7 @@ class FlightController extends Controller
      * Flight Done list
      */
     public function flightDoneList(){
-        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_done_flight', [
             'all_data' => $all_data
@@ -56,6 +57,7 @@ class FlightController extends Controller
 
         // return $request->all();
         Flight::create([
+            'user_id' => Auth::user()->id,
             'man_id' => $request->man_id,
             'flight_date' => $request->flight_date,
             'flight_report' => $request->flight_report,
@@ -86,6 +88,7 @@ class FlightController extends Controller
 
         $data = Flight::findOrFail($id);
 
+        $data->user_id = Auth::user()->id;
         $data->man_id = $request->man_id;
         $data->flight_date = $request->flight_date;
         $data->flight_report = $request->flight_report;
@@ -137,7 +140,7 @@ class FlightController extends Controller
      * Flight Trash list
      */
     public function flightTrashList(){
-        $all_data = Flight::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = Flight::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('flight.trash_flight', [
             'all_data' => $all_data
         ]);

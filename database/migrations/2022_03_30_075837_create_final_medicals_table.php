@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('final_medicals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('test_medical_id');
             $table->foreign('test_medical_id')->references('id')->on('entry_passports')->onDelete('cascade');
             $table->string('name')->nullable();

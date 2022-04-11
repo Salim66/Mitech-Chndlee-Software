@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FinalMedical;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FinalMedicalController extends Controller
 {
@@ -11,7 +12,7 @@ class FinalMedicalController extends Controller
      * Final Mediacl list
      */
     public function fMedicalList(){
-        $all_data = FinalMedical::with('entry')->where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
+        $all_data = FinalMedical::with('entry')->where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('final-medical.all_fMedical', [
             'all_data' => $all_data
@@ -22,7 +23,7 @@ class FinalMedicalController extends Controller
      * Final Mediacl pending list
      */
     public function fMedicalPendingList(){
-        $all_data = FinalMedical::with('entry')->where('medical_report_status', null)->where('status', 0)->latest()->get();
+        $all_data = FinalMedical::with('entry')->where('medical_report_status', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('final-medical.all_pending_fMedical', [
             'all_data' => $all_data
@@ -33,7 +34,7 @@ class FinalMedicalController extends Controller
      * Final Mediacl Done list
      */
     public function fMedicalDoneList(){
-        $all_data = FinalMedical::with('entry')->where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = FinalMedical::with('entry')->where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('final-medical.all_done_fMedical', [
             'all_data' => $all_data
@@ -57,6 +58,7 @@ class FinalMedicalController extends Controller
 
         // return $request->all();
         FinalMedical::create([
+            'user_id' => Auth::user()->id,
             'test_medical_id' => $request->test_medical_id,
             'medical_attend_date' => $request->medical_attend_date,
             'report_delivery_date' => $request->report_delivery_date,
@@ -88,6 +90,7 @@ class FinalMedicalController extends Controller
 
         $data = FinalMedical::findOrFail($id);
 
+        $data->user_id = Auth::user()->id;
         $data->test_medical_id = $request->test_medical_id;
         $data->medical_attend_date = $request->medical_attend_date;
         $data->report_delivery_date = $request->report_delivery_date;
@@ -140,7 +143,7 @@ class FinalMedicalController extends Controller
      * Final medical Trash list
      */
     public function fMedicalTrashList(){
-        $all_data = FinalMedical::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = FinalMedical::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('final-medical.trash_fMedical', [
             'all_data' => $all_data
         ]);

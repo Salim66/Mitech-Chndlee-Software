@@ -27,14 +27,14 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
         $tran_certi = App\Models\TranCerti::all();
         $certificate = [];
         foreach ($tran_certi as $tran){
-            array_push($certificate, $tran -> visa_id);
+            array_push($certificate, $tran -> mofa_id);
         }
-        // dd($select_police_medical);
-        // dd($test_medical);
+        // dd($certificate);
+        // dd($final_medical);
     @endphp
 
     <!-- Container-fluid starts-->
@@ -52,13 +52,13 @@
                                     @csrf
 
                                     <div class="form-group row">
-                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Visa</label>
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Mofa</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="visa_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="mofa_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                @if(in_array($fmediacl->mofa_id, $certificate))
+                                                @if(in_array($fmediacl->police_clearance_id, $certificate))
 
                                                 @else
                                                 <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
@@ -67,7 +67,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('visa_id')
+                                        @error('mofa_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

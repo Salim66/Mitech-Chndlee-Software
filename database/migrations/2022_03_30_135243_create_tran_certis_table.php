@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('tran_certis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('visa_id');
-            $table->foreign('visa_id')->references('id')->on('entry_passports')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('mofa_id');
+            $table->foreign('mofa_id')->references('id')->on('entry_passports')->onDelete('cascade');
             $table->string('tran_date')->nullable();
             $table->string('tran_report')->nullable();
             $table->boolean('status')->default(0);

@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('entry_passports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('date');
             $table->string('name');
-            $table->string('passport_no');
+            $table->string('passport_no')->unique();
             $table->string('mobile_no');
             $table->string('visa_type');
             $table->unsignedBigInteger('agent_id');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('processing_id');
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

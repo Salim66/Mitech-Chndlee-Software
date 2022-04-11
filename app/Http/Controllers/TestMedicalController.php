@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TestMedical;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestMedicalController extends Controller
 {
@@ -11,7 +12,7 @@ class TestMedicalController extends Controller
      * Test Mediacl list
      */
     public function tMedicalList(){
-        $all_data = TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->latest()->get();
+        $all_data = TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('test-medical.all_tMedical', [
             'all_data' => $all_data
         ]);
@@ -21,7 +22,7 @@ class TestMedicalController extends Controller
      * Test Mediacl Pending list
      */
     public function tMedicalPendingList(){
-        $all_data = TestMedical::where('medical_report_status', null)->where('status', 0)->latest()->get();
+        $all_data = TestMedical::where('medical_report_status', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('test-medical.all_pending_tMedical', [
             'all_data' => $all_data
         ]);
@@ -31,7 +32,7 @@ class TestMedicalController extends Controller
      * Test Mediacl Done list
      */
     public function tMedicalDoneList(){
-        $all_data = TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->latest()->get();
+        $all_data = TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('test-medical.all_done_tMedical', [
             'all_data' => $all_data
         ]);
@@ -54,6 +55,7 @@ class TestMedicalController extends Controller
 
         // return $request->all();
         TestMedical::create([
+            'user_id' => Auth::user()->id,
             'entry_passport_id' => $request->entry_passport_id,
             'medical_attend_date' => $request->medical_attend_date,
             'report_delivery_date' => $request->report_delivery_date,
@@ -85,6 +87,7 @@ class TestMedicalController extends Controller
 
         $data = TestMedical::findOrFail($id);
 
+        $data->user_id = Auth::user()->id;
         $data->entry_passport_id = $request->entry_passport_id;
         $data->medical_attend_date = $request->medical_attend_date;
         $data->report_delivery_date = $request->report_delivery_date;
@@ -137,7 +140,7 @@ class TestMedicalController extends Controller
      * Test medical Trash list
      */
     public function tMedicalTrashList(){
-        $all_data = TestMedical::onlyTrashed()->where('status', 0)->latest()->get();
+        $all_data = TestMedical::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
         return view('test-medical.trash_tMedical', [
             'all_data' => $all_data
         ]);

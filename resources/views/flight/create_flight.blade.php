@@ -27,14 +27,14 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\ManPower::with('entry')->where('status', 1)->latest()->get();
+        $final_medical = App\Models\ManPower::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
         $select_flight = App\Models\Flight::all();
         $flight = [];
         foreach ($select_flight as $s_flight){
             array_push($flight, $s_flight -> man_id);
         }
         // dd($select_police_medical);
-        // dd($test_medical);
+        // dd($final_medical);
     @endphp
 
     <!-- Container-fluid starts-->
@@ -58,7 +58,7 @@
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                @if(in_array($fmediacl->tran_id, $flight))
+                                                @if(in_array($fmediacl->visa_id, $flight))
 
                                                 @else
                                                 <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>

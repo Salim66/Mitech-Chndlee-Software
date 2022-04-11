@@ -36,7 +36,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <div class="tab-pane fade active show" role="tabpanel" aria-labelledby="account-tab">
                                 <form class="needs-validation agent-add" novalidate="" action="{{ route('store.agent') }}" method="POST">
                                     @csrf
 

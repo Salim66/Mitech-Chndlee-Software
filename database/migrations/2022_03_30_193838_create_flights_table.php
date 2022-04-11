@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('man_id');
             $table->foreign('man_id')->references('id')->on('entry_passports')->onDelete('cascade');
             $table->string('flight_date')->nullable();

@@ -14,6 +14,6 @@ class Visa extends Model
     protected $guarded = [];
 
     public function entry(){
-        return $this->belongsTo(EntryPassport::class, 'mofa_id');
+        return $this->belongsTo(EntryPassport::class, 'tran_id');
     }
 }

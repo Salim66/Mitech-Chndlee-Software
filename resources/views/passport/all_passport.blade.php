@@ -51,6 +51,8 @@
                             <th> Mobile No. </th>
                             <th> Visa Type </th>
                             <th> Agent Name </th>
+                            <th> Country Name </th>
+                            <th> P.Media Name </th>
                             @if(Auth::user()->agent_id == null)
                             <th> Action </th>
                             @endif
@@ -67,6 +69,8 @@
                             <td> {{ $data->mobile_no }} </td>
                             <td> {{ $data->visa_type }} </td>
                             <td> {{ $data->agents->name }} </td>
+                            <td> {{ $data->countries->country_name }} </td>
+                            <td> {{ $data->processings->processing_media_name }} </td>
                             @if(Auth::user()->agent_id == null)
                             <td style="width: 23%">
                                 <a title="Edit" href="{{ route('edit.passport', $data->id) }}" class="btn btn-outline-info btn-sm"><i class='fa fa-pencil'></i></a>
