@@ -12,7 +12,7 @@ class VisaController extends Controller
      * Visa list
      */
     public function visaList(){
-        $all_data = Visa::with('entry')->where('visa_date', null)->where('visa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', null)->where('visa_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_visa', [
             'all_data' => $all_data
@@ -23,7 +23,7 @@ class VisaController extends Controller
      * Visa Pending list
      */
     public function visaPendingList(){
-        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_pending_visa', [
             'all_data' => $all_data
@@ -34,7 +34,7 @@ class VisaController extends Controller
      * Visa Done list
      */
     public function visaDoneList(){
-        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Visa::with('entry')->where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('visa.all_done_visa', [
             'all_data' => $all_data
@@ -141,7 +141,7 @@ class VisaController extends Controller
      * Visa Trash list
      */
     public function visaTrashList(){
-        $all_data = Visa::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Visa::onlyTrashed()->where('status', 0)->latest()->get();
         return view('visa.trash_visa', [
             'all_data' => $all_data
         ]);

@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
+        $final_medical = App\Models\Visa::with('entry')->where('status', 1)->latest()->get();
         $man_power = App\Models\ManPower::all();
         $power = [];
         foreach ($man_power as $man){

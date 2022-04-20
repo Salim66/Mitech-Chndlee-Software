@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\TranCerti::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
+        $final_medical = App\Models\TranCerti::with('entry')->where('status', 1)->latest()->get();
         $visa_all = App\Models\Visa::all();
         $visa = [];
         foreach ($visa_all as $vi){

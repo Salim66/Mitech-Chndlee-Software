@@ -12,7 +12,7 @@ class MofaController extends Controller
      * Mofa list
      */
     public function mofaList(){
-        $all_data = Mofa::with('entry')->where('mofa_date', null)->where('mofa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', null)->where('mofa_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_mofa', [
             'all_data' => $all_data
@@ -23,7 +23,7 @@ class MofaController extends Controller
      * Mofa Pending list
      */
     public function mofaPendingList(){
-        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_pending_mofa', [
             'all_data' => $all_data
@@ -34,7 +34,7 @@ class MofaController extends Controller
      * Mofa Done list
      */
     public function mofaDoneList(){
-        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Mofa::with('entry')->where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('mofa.all_done_mofa', [
             'all_data' => $all_data
@@ -141,7 +141,7 @@ class MofaController extends Controller
      * Mofa Trash list
      */
     public function mofaTrashList(){
-        $all_data = Mofa::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Mofa::onlyTrashed()->where('status', 0)->latest()->get();
         return view('mofa.trash_mofa', [
             'all_data' => $all_data
         ]);

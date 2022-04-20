@@ -12,7 +12,7 @@ class ManPowerController extends Controller
      * Man list
      */
     public function manList(){
-        $all_data = ManPower::with('entry')->where('man_date', null)->where('man_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', null)->where('man_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_man', [
             'all_data' => $all_data
@@ -23,7 +23,7 @@ class ManPowerController extends Controller
      * Man Pending list
      */
     public function manPendingList(){
-        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_pending_man', [
             'all_data' => $all_data
@@ -34,7 +34,7 @@ class ManPowerController extends Controller
      * Man Done list
      */
     public function manDoneList(){
-        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = ManPower::with('entry')->where('man_date', '!=', null)->where('man_report', '!=', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('man.all_done_man', [
             'all_data' => $all_data
@@ -141,7 +141,7 @@ class ManPowerController extends Controller
      * Man Trash list
      */
     public function manTrashList(){
-        $all_data = ManPower::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = ManPower::onlyTrashed()->where('status', 0)->latest()->get();
         return view('man.trash_man', [
             'all_data' => $all_data
         ]);

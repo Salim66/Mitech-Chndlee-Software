@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\ManPower::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
+        $final_medical = App\Models\ManPower::with('entry')->where('status', 1)->latest()->get();
         $select_flight = App\Models\Flight::all();
         $flight = [];
         foreach ($select_flight as $s_flight){

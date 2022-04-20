@@ -49,11 +49,11 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Training Certificate</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="mofa_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="tran_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($final_medical as $fmediacl)
 
-                                                <option value="{{ $fmediacl->entry->id }}" {{ ($data->mofa_id == $fmediacl->entry->id) ? 'selected' : ''  }}>{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                <option value="{{ $fmediacl->entry->id }}" {{ ($data->tran_id == $fmediacl->entry->id) ? 'selected' : ''  }}>{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
 
 
                                                 @endforeach

@@ -35,9 +35,9 @@
 
             <!-- Count Test Medical -->
             @php
-                $tm_new = App\Models\TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('user_id', Auth::user()->id)->where('status', 0)->count();
-                $tm_pending = App\Models\TestMedical::where('medical_report_status', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $tm_done = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $tm_new = App\Models\TestMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $tm_pending = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $tm_done = App\Models\TestMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Test Medical -->
 
@@ -53,9 +53,9 @@
 
             <!-- Count Final Medical -->
             @php
-                $fm_new = App\Models\FinalMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('user_id', Auth::user()->id)->where('status', 0)->count();
-                $fm_pending = App\Models\FinalMedical::where('medical_report_status', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $fm_done = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $fm_new = App\Models\FinalMedical::where('medical_attend_date', null)->where('report_delivery_date', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $fm_pending = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('medical_report_status', null)->where('status', 0)->count();
+                $fm_done = App\Models\FinalMedical::where('medical_attend_date', '!=', null)->where('report_delivery_date', '!=', null)->where('medical_report_status', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Final Medical -->
 
@@ -71,9 +71,9 @@
 
             <!-- Count Police Clearance -->
             @php
-                $pc_new = App\Models\PoliceClearance::where('police_clearance_date', null)->where('police_clearance_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->count();
-                $pc_pending = App\Models\PoliceClearance::where('police_clearance_date', '!=', null)->where('police_clearance_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->count();
-                $pc_done = App\Models\PoliceClearance::where('police_clearance_date', '!=', null)->where('police_clearance_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->count();
+                $pc_new = App\Models\PoliceClearance::where('police_clearance_date', null)->where('police_clearance_report', null)->where('status', 0)->count();
+                $pc_pending = App\Models\PoliceClearance::where('police_clearance_date', '!=', null)->where('police_clearance_report', null)->where('status', 0)->count();
+                $pc_done = App\Models\PoliceClearance::where('police_clearance_date', '!=', null)->where('police_clearance_report', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Police Clearance -->
 
@@ -89,9 +89,9 @@
 
             <!-- Count Mofa -->
             @php
-                $mofa_new = App\Models\Mofa::where('mofa_date', null)->where('mofa_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $mofa_pending = App\Models\Mofa::where('mofa_date', '!=', null)->where('mofa_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $mofa_done = App\Models\Mofa::where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $mofa_new = App\Models\Mofa::where('mofa_date', null)->where('mofa_report', null)->where('status', 0)->count();
+                $mofa_pending = App\Models\Mofa::where('mofa_date', '!=', null)->where('mofa_report', null)->where('status', 0)->count();
+                $mofa_done = App\Models\Mofa::where('mofa_date', '!=', null)->where('mofa_report', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Mofa -->
 
@@ -107,9 +107,9 @@
 
             <!-- Count Training Certificate -->
             @php
-                $tran_new = App\Models\TranCerti::where('tran_date', null)->where('tran_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $tran_pending = App\Models\TranCerti::where('tran_date', '!=', null)->where('tran_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $tran_done = App\Models\TranCerti::where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $tran_new = App\Models\TranCerti::where('tran_date', null)->where('tran_report', null)->where('status', 0)->count();
+                $tran_pending = App\Models\TranCerti::where('tran_date', '!=', null)->where('tran_report', null)->where('status', 0)->count();
+                $tran_done = App\Models\TranCerti::where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Training Certificate -->
 
@@ -125,9 +125,9 @@
 
             <!-- Count Visa -->
             @php
-                $visa_new = App\Models\Visa::where('visa_date', null)->where('visa_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $visa_pending = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $visa_done = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $visa_new = App\Models\Visa::where('visa_date', null)->where('visa_report', null)->where('status', 0)->count();
+                $visa_pending = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', null)->where('status', 0)->count();
+                $visa_done = App\Models\Visa::where('visa_date', '!=', null)->where('visa_report', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Visa -->
 
@@ -143,9 +143,9 @@
 
             <!-- Count Man Power -->
             @php
-                $man_new = App\Models\ManPower::where('man_date', null)->where('man_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $man_pending = App\Models\ManPower::where('man_date', '!=', null)->where('man_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $man_done = App\Models\ManPower::where('man_date', '!=', null)->where('man_report', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $man_new = App\Models\ManPower::where('man_date', null)->where('man_report', null)->where('status', 0)->count();
+                $man_pending = App\Models\ManPower::where('man_date', '!=', null)->where('man_report', null)->where('status', 0)->count();
+                $man_done = App\Models\ManPower::where('man_date', '!=', null)->where('man_report', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Man Power -->
 
@@ -161,9 +161,9 @@
 
             <!-- Count Flight -->
             @php
-                $flight_new = App\Models\Flight::where('flight_date', null)->where('flight_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $flight_pending = App\Models\Flight::where('flight_date', '!=', null)->where('flight_report', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
-                $flight_done = App\Models\Flight::where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('status', 0)->where('user_id', Auth::user()->id)->count();
+                $flight_new = App\Models\Flight::where('flight_date', null)->where('flight_report', null)->where('status', 0)->count();
+                $flight_pending = App\Models\Flight::where('flight_date', '!=', null)->where('flight_report', null)->where('status', 0)->count();
+                $flight_done = App\Models\Flight::where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('status', 0)->count();
             @endphp
             <!-- !Count Flight -->
 

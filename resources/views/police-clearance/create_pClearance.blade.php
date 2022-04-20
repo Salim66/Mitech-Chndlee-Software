@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\FinalMedical::with('entry')->where('user_id', Auth::user()->id)->where('status', 1)->latest()->get();
+        $final_medical = App\Models\FinalMedical::with('entry')->where('status', 1)->latest()->get();
         $police_clearance = App\Models\PoliceClearance::all();
         $select_police_clearance = [];
         foreach ($police_clearance as $police){

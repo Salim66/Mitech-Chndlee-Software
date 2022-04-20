@@ -12,7 +12,7 @@ class FlightController extends Controller
      * Flight list
      */
     public function flightList(){
-        $all_data = Flight::with('entry')->where('flight_date', null)->where('flight_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', null)->where('flight_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_flight', [
             'all_data' => $all_data
@@ -23,7 +23,7 @@ class FlightController extends Controller
      * Flight Pending list
      */
     public function flightPendingList(){
-        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_pending_flight', [
             'all_data' => $all_data
@@ -33,7 +33,7 @@ class FlightController extends Controller
      * Flight Done list
      */
     public function flightDoneList(){
-        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Flight::with('entry')->where('flight_date', '!=', null)->where('flight_report', '!=', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('flight.all_done_flight', [
             'all_data' => $all_data
@@ -140,7 +140,7 @@ class FlightController extends Controller
      * Flight Trash list
      */
     public function flightTrashList(){
-        $all_data = Flight::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = Flight::onlyTrashed()->where('status', 0)->latest()->get();
         return view('flight.trash_flight', [
             'all_data' => $all_data
         ]);

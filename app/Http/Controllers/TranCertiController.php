@@ -12,7 +12,7 @@ class TranCertiController extends Controller
      * Training list
      */
     public function tranList(){
-        $all_data = TranCerti::with('entry')->where('tran_date', null)->where('tran_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', null)->where('tran_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_tran', [
             'all_data' => $all_data
@@ -23,7 +23,7 @@ class TranCertiController extends Controller
      * Training Pending list
      */
     public function tranPendingList(){
-        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_pending_tran', [
             'all_data' => $all_data
@@ -34,7 +34,7 @@ class TranCertiController extends Controller
      * Training Done list
      */
     public function tranDoneList(){
-        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::with('entry')->where('tran_date', '!=', null)->where('tran_report', '!=', null)->where('status', 0)->latest()->get();
         // dd($all_data);
         return view('tran.all_done_tran', [
             'all_data' => $all_data
@@ -141,7 +141,7 @@ class TranCertiController extends Controller
      * Training Trash list
      */
     public function tranTrashList(){
-        $all_data = TranCerti::onlyTrashed()->where('user_id', Auth::user()->id)->where('status', 0)->latest()->get();
+        $all_data = TranCerti::onlyTrashed()->where('status', 0)->latest()->get();
         return view('tran.trash_tran', [
             'all_data' => $all_data
         ]);

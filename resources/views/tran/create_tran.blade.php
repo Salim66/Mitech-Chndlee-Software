@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->where('user_id', Auth::user()->id)->latest()->get();
+        $final_medical = App\Models\Mofa::with('entry')->where('status', 1)->latest()->get();
         $tran_certi = App\Models\TranCerti::all();
         $certificate = [];
         foreach ($tran_certi as $tran){
