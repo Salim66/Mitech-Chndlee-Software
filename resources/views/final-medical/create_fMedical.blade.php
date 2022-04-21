@@ -61,7 +61,7 @@
                                                 @if(in_array($tmediacl->entry_passport_id, $select_final_medical))
 
                                                 @else
-                                                <option value="{{ $tmediacl->entry->id }}">{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }}</option>
+                                                <option value="{{ $tmediacl->entry->id }}">{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }} | {{ $tmediacl->entry->mobile_no }}</option>
                                                 @endif
 
                                                 @endforeach

@@ -57,7 +57,7 @@
                         @foreach($all_data as $data)
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
-                            <td style="width: 30% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }}</td>
+                            <td style="width: 30% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }} | {{ $data->entry->mobile_no }}</td>
                             <td> {{ $data->man_date }} </td>
                             <td> {{ $data->man_report }} </td>
                             @if(Auth::user()->agent_id == null)

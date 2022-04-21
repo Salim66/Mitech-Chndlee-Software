@@ -52,7 +52,7 @@
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($test_medical as $tmediacl)
 
-                                                <option value="{{ $tmediacl->entry->id }}" {{ ($data->test_medical_id == $tmediacl->entry->id) ? 'selected' : ''  }}>{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }}</option>
+                                                <option value="{{ $tmediacl->entry->id }}" {{ ($data->test_medical_id == $tmediacl->entry->id) ? 'selected' : ''  }}>{{ $tmediacl->entry->name }} | {{ $tmediacl->entry->passport_no }} | {{ $tmediacl->entry->mobile_no }}</option>
 
                                                 @endforeach
                                             </select>

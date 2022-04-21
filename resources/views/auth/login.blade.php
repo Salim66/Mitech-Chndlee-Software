@@ -165,8 +165,9 @@
                             </ul>
                             <div class="tab-content" id="top-tabContent">
                                 <div class="tab-pane fade show active" id="top-profile" role="tabpanel" aria-labelledby="top-profile-tab">
+                                    <x-jet-validation-errors class="mb-4 text-danger" />
                                     @if (session('status'))
-                                        <div class="mb-4 font-medium text-sm text-green-600">
+                                        <div class="mb-4 font-medium text-sm text-danger bg-white shadow p-2">
                                             {{ session('status') }}
                                         </div>
                                     @endif

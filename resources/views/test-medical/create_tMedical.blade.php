@@ -60,7 +60,7 @@
                                                     @if(in_array($passport->id, $select_test_medical))
 
                                                     @else
-                                                        <option value="{{ $passport->id }}">{{ $passport->name }} | {{ $passport->passport_no }}</option>
+                                                        <option value="{{ $passport->id }}">{{ $passport->name }} | {{ $passport->passport_no }} | {{ $passport->mobile_no }}</option>
                                                     @endif
 
                                                 @endforeach

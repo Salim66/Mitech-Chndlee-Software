@@ -51,7 +51,7 @@
                                             <select class="form-control digits select2" id="exampleFormControlSelect1" name="entry_passport_id">
                                                 <option disabled selected>--Select--</option>
                                                 @foreach($entry_passport as $passport)
-                                                <option value="{{ $passport->id }}" {{ ($data->entry_passport_id == $passport->id) ? 'selected' : ''  }}>{{ $passport->name }} | {{ $passport->passport_no }}</option>
+                                                <option value="{{ $passport->id }}" {{ ($data->entry_passport_id == $passport->id) ? 'selected' : ''  }}>{{ $passport->name }} | {{ $passport->passport_no }} | {{ $passport->mobile_no }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

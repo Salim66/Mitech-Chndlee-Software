@@ -61,7 +61,7 @@
                                                 @if(in_array($fmediacl->tran_id, $power))
 
                                                 @else
-                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }} | {{ $fmediacl->entry->mobile_no }}</option>
                                                 @endif
 
                                                 @endforeach

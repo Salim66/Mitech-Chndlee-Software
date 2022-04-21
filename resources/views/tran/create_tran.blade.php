@@ -61,7 +61,7 @@
                                                 @if(in_array($fmediacl->police_clearance_id, $certificate))
 
                                                 @else
-                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }}</option>
+                                                <option value="{{ $fmediacl->entry->id }}">{{ $fmediacl->entry->name }} | {{ $fmediacl->entry->passport_no }} | {{ $fmediacl->entry->mobile_no }}</option>
                                                 @endif
 
                                                 @endforeach
