@@ -44,8 +44,8 @@
 
 
         account_load_data();
-        function account_load_data( from_date = '', to_date = '', agent_id = '' ) {
-            // alert(agent_id +" "+ from_date +" "+ to_date);
+        function account_load_data( from_date = '', to_date = '', passenger_id = '' ) {
+            // alert(passenger_id +" "+ from_date +" "+ to_date);
             $('#account').DataTable({
                 processing: true,
                 serverSide: true,
@@ -60,7 +60,7 @@
                 ],
                 ajax: {
                     url: '',
-                    data: {from_date:from_date, to_date:to_date, agent_id:agent_id}
+                    data: {from_date:from_date, to_date:to_date, passenger_id:passenger_id}
                 },
                 columns: [
                     {
@@ -68,8 +68,16 @@
                         name: 'id'
                     },
                     {
-                        data: 'agents.name',
-                        name: 'agents.name'
+                        data: 'entry.name',
+                        name: 'entry.name'
+                    },
+                    {
+                        data: 'entry.passport_no',
+                        name: 'entry.passport_no'
+                    },
+                    {
+                        data: 'entry.mobile_no',
+                        name: 'entry.mobile_no'
                     },
                     {
                         data: 'created_at',
@@ -114,16 +122,16 @@
             e.preventDefault();
             let from_date = moment($('#from_data').val()).format('YYYY-MM-DD');
             let to_date =  moment($('#to_data').val()).format('YYYY-MM-DD');
-            let agent_id = $('#agent_id').val();
+            let passenger_id = $('#passenger_id').val();
 
-            // alert(agent_id);
+            // alert(passenger_id);
             // alert(from_date + ' ' + to_date);
 
 
-            if( agent_id != null && agent_id != ''){
+            if( passenger_id != null && passenger_id != ''){
 
                 $('#account').DataTable().destroy();
-                account_load_data(from_date, to_date, agent_id);
+                account_load_data(from_date, to_date, passenger_id);
 
                 return false;
             }
@@ -159,7 +167,7 @@
                 success: function(data){
                     // console.log(data);
 
-                    $('.account_name').html(data.agent);
+                    $('.account_name').html(data.passen);
                     $('.account_amount').val(data.amount);
                     $('.account_purpose').val(data.purpose);
                     $('.account_payment_receive_status').val(data.payment_receive_status);

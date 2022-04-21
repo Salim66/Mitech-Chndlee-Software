@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\Agent;
+use App\Models\EntryPassport;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -16,9 +17,9 @@ class AccountController extends Controller
         if( request() -> ajax() ){
 
            // when two date is empty and  business id has this purson is run
-           if( !empty( $request->agent_id ) && $request->from_date == "Invalid date" ){
+           if( !empty( $request->passenger_id ) && $request->from_date == "Invalid date" ){
 
-               return datatables()->of( Account::with( 'agents' )->where('agent_id', $request->agent_id)->latest()->get() )->addColumn( 'action', function ( $data ) {
+               return datatables()->of( Account::with( 'entry' )->where('passenger_id', $request->passenger_id)->latest()->get() )->addColumn( 'action', function ( $data ) {
                    $output = '<a title="Edit" edit_id="' . $data['id'] . '" href="#" class="btn btn-sm btn-outline-info edit_account_data" style="margin-right: 10px;"><i class="fa fa-edit"></i></a>';
 
                    $output .= '<form style="display: inline;" action="#" method="POST" delete_id = "'.$data['id'].'" class="account_delete_form"><input type="hidden" name="id" class="delete_in" value="' .
@@ -29,9 +30,9 @@ class AccountController extends Controller
            }
 
            // when two date has and  business id is empty agent id
-            if ( !empty( $request->from_date ) && !empty( $request->to_date && empty( $request->agent_id ) ) ) {
+            if ( !empty( $request->from_date ) && !empty( $request->to_date && empty( $request->passenger_id ) ) ) {
 
-               return datatables()->of( Account::with( 'agents' )->whereBetween('created_at', [$request->from_date, $request->to_date])->latest()->get() )->addColumn( 'action', function ( $data ) {
+               return datatables()->of( Account::with( 'entry' )->whereBetween('created_at', [$request->from_date, $request->to_date])->latest()->get() )->addColumn( 'action', function ( $data ) {
                    $output = '<a title="Edit" edit_id="' . $data['id'] . '" href="#" class="btn btn-sm btn-outline-info edit_account_data" style="margin-right: 10px;"><i class="fa fa-edit"></i></a>';
 
                    $output .= '<form style="display: inline;" action="#" method="POST" delete_id = "'.$data['id'].'" class="account_delete_form"><input type="hidden" name="id" class="delete_in" value="' .
@@ -42,9 +43,9 @@ class AccountController extends Controller
            }
 
            // when all data has
-           if( !empty( $request->from_date ) && !empty( $request->to_date ) && !empty( $request->agent_id ) ){
+           if( !empty( $request->from_date ) && !empty( $request->to_date ) && !empty( $request->passenger_id ) ){
 
-               return datatables()->of( Account::with( 'agents' )->whereBetween('created_at', [$request->from_date, $request->to_date])->where('agent_id', $request->agent_id)->latest()->get() )->addColumn( 'action', function ( $data ) {
+               return datatables()->of( Account::with( 'entry' )->whereBetween('created_at', [$request->from_date, $request->to_date])->where('passenger_id', $request->passenger_id)->latest()->get() )->addColumn( 'action', function ( $data ) {
                        $output = '<a title="Edit" edit_id="' . $data['id'] . '" href="#" class="btn btn-sm btn-outline-info edit_account_data" style="margin-right: 10px;"><i class="fa fa-edit"></i></a>';
 
                        $output .= '<form style="display: inline;" action="#" method="POST" delete_id = "'.$data['id'].'" class="account_delete_form"><input type="hidden" name="id" class="delete_in" value="' .
@@ -55,9 +56,9 @@ class AccountController extends Controller
            }
 
            // When all fields are empty this purson is run
-           if( empty( $request->agent_id ) && empty( $request->from_date ) && empty( $request->to_date )){
+           if( empty( $request->passenger_id ) && empty( $request->from_date ) && empty( $request->to_date )){
 
-               return datatables()->of( Account::with( 'agents' )->latest()->get() )->addColumn( 'action', function ( $data ) {
+               return datatables()->of( Account::with( 'entry' )->latest()->get() )->addColumn( 'action', function ( $data ) {
                    $output = '<a title="Edit" edit_id="' . $data['id'] . '" href="#" class="btn btn-sm btn-outline-info edit_account_data" style="margin-right: 10px;"><i class="fa fa-edit"></i></a>';
 
                    $output .= '<form style="display: inline;" action="#" method="POST" delete_id = "'.$data['id'].'" class="account_delete_form"><input type="hidden" name="id" class="delete_in" value="' .
@@ -71,7 +72,7 @@ class AccountController extends Controller
        }
 
 
-        $all_data = Account::with('agents')->latest()->get();
+        $all_data = Account::with('entry')->latest()->get();
         // dd($all_data);
         return view('accounts.all_accounts');
     }
@@ -88,7 +89,7 @@ class AccountController extends Controller
      */
     public function accountsStore(Request $request){
         $this->validate($request, [
-            'agent_id' => 'required',
+            'passenger_id' => 'required',
             'amount' => 'required',
             'purpose' => 'required',
             'payment_receive_status' => 'required',
@@ -96,7 +97,7 @@ class AccountController extends Controller
 
 
         Account::create([
-            'agent_id' => $request->agent_id,
+            'passenger_id' => $request->passenger_id,
             'amount' => $request->amount,
             'purpose' => $request->purpose,
             'payment_receive_status' => $request->payment_receive_status,
@@ -117,21 +118,21 @@ class AccountController extends Controller
         $data = Account::findOrFail($id);
         // return $data;
         // //All agent
-        $agents = Agent::latest()->get();
-        // return $agents;
+        $entry = EntryPassport::latest()->get();
+        // return $entry;
         //Selected agent id
-        $selected_agent_id = $data->agents->id;
+        $selected_passenger_id = $data->entry->id;
 
 
-        $agent_list = '';
-        foreach ( $agents as $agent ) {
-            if ( $agent->id === $selected_agent_id ) {
+        $passen_list = '';
+        foreach ( $entry as $passen ) {
+            if ( $passen->id === $selected_passenger_id ) {
                 $selected = 'selected';
             } else {
                 $selected = '';
             }
 
-            $agent_list .= '<option value="' . $agent->id . '" ' . $selected . '>' . $agent->name . '</option>';
+            $passen_list .= '<option value="' . $passen->id . '" ' . $selected . '>' . $passen->name . '</option>';
 
         }
 
@@ -139,7 +140,7 @@ class AccountController extends Controller
         // return
         return [
             'id'     => $data->id,
-            'agent'  => $agent_list,
+            'passen'  => $passen_list,
             'amount' => $data->amount,
             'purpose' => $data->purpose,
             'payment_receive_status' => $data->payment_receive_status,
@@ -155,7 +156,7 @@ class AccountController extends Controller
         $data = Account::findOrFail($request->id);
         // return $data;
 
-        $data->agent_id = $request->agent_id;
+        $data->passenger_id = $request->passenger_id;
         $data->amount = $request->amount;
         $data->purpose = $request->purpose;
         $data->payment_receive_status = $request->payment_receive_status;

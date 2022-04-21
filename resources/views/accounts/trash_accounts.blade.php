@@ -43,7 +43,7 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> Agent Name </th>
+                            <th> Passenger Name </th>
                             <th> Amount </th>
                             <th> Purpose </th>
                             <th> Payment Receive Status </th>
@@ -55,7 +55,7 @@
                         @foreach($all_data as $data)
                           <tr>
                             <td style="width: 5% !important"> {{ $loop->index+1 }} </td>
-                            <td style="width: 20% !important"> {{ $data->agents->name }} </td>
+                            <td style="width: 20% !important"> {{ $data->entry->name }} | {{ $data->entry->passport_no }} | {{ $data->entry->mobile_no }} </td>
                             <td> {{ $data->amount }} </td>
                             <td> {{ $data->purpose }} </td>
                             <td> {{ $data->payment_status }} </td>

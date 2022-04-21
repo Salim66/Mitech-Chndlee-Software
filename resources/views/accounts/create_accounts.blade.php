@@ -27,7 +27,7 @@
     <!-- Container-fluid Ends-->
 
     @php
-        $agents = App\Models\Agent::latest()->get();
+        $entry_passport = App\Models\EntryPassport::latest()->get();
     @endphp
 
     <!-- Container-fluid starts-->
@@ -45,16 +45,16 @@
                                     @csrf
 
                                     <div class="form-group row">
-                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Select Agent</label>
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Select Passenger Name</label>
                                         <div class="col-xl-8 col-md-7">
-                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="agent_id">
+                                            <select class="form-control digits select2" id="exampleFormControlSelect1" name="passenger_id">
                                                 <option disabled selected>--Select--</option>
-                                                @foreach($agents as $agent)
-                                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                                @foreach($entry_passport as $passport)
+                                                <option value="{{ $passport->id }}">{{ $passport->name }} | {{ $passport->passport_no }} | {{ $passport->mobile_no }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('agent_id')
+                                        @error('passenger_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

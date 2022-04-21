@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('agent_id');
-            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade');
+            $table->unsignedBigInteger('passenger_id');
+            // $table->foreign('passenger_id')->references('id')->on('entry')->onDelete('cascade');
             $table->string('amount');
             $table->string('purpose');
             $table->string('payment_receive_status');

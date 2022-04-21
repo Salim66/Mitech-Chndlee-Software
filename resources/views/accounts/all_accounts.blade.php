@@ -38,18 +38,18 @@
             </div>
 
             @php
-                $agents = App\Models\Agent::latest()->get();
+                $entry_passport = App\Models\EntryPassport::latest()->get();
             @endphp
             <!-- Start Search Panel -->
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Select Agent</label>
-                            <select name="agent_id" class="form-control js-example-disabled-results select2" id="agent_id" style="width: 100%;">
+                            <label>Select Passenger Name</label>
+                            <select name="passenger_id" class="form-control js-example-disabled-results select2" id="passenger_id" style="width: 100%;">
                                 <option selected disabled> - Select - </option>
-                                @foreach($agents as $agent)
-                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                @foreach($entry_passport as $passen)
+                                <option value="{{ $passen->id }}">{{ $passen->name }} | {{ $passen->passport_no }} | {{ $passen->mobile_no }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -90,7 +90,9 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> Agent Name </th>
+                            <th> Passenger Name </th>
+                            <th> Passport No. </th>
+                            <th> Mobile No. </th>
                             <th> Date </th>
                             <th> Purpose </th>
                             <th> Payment Receive Status </th>
@@ -118,7 +120,7 @@
                         </tbody> --}}
                         <tfoot>
                             <tr>
-                                <th rowspan="1" colspan="5" style="text-align: right; font-weight: bold;">Total Amount</th>
+                                <th rowspan="1" colspan="7" style="text-align: right; font-weight: bold;">Total Amount</th>
                                 <th rowspan="1" colspan="1" style="text-align: left; font-weight: bold;" class="total_account"></th>
                                 <th rowspan="1" colspan="1"></th>
                             </tr>
@@ -144,8 +146,8 @@
             <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="">Select Agent</label>
-                        <select name="agent_id" class="form-control account_name select2 d-block" style="width: 100%;">
+                        <label for="">Select Passenger Name</label>
+                        <select name="passenger_id" class="form-control account_name select2 d-block" style="width: 100%;">
 
                         </select>
                     </div>
